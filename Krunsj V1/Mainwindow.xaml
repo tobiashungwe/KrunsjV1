@@ -1,0 +1,187 @@
+﻿<Window x:Name="Krunsj" x:Class="Krunsj_V1.Mainwindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Krunsj_V1"
+        mc:Ignorable="d"
+        Title="Mainwindow" Height="900" Width="1598" WindowStartupLocation="CenterScreen"  WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip" Icon="favicon (1).ico" MouseDown="Krunsj_MouseDown" >
+
+
+    <Window.Resources>
+        <!--Label style-->
+
+
+        <!--checkbox style-->
+        <Style x:Key="favoriteCheckbox" TargetType="{x:Type CheckBox}">
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Padding" Value="50"></Setter>
+            <Setter Property="FontFamily" Value="Century Gothic"></Setter>
+            <Setter Property="Template">
+
+
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image x:Name="checkboxImage" Source="C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\Images\CheckboxUncheched.png" Width="32"/>
+                            <ContentPresenter/>
+                        </StackPanel>
+
+                        <ControlTemplate.Triggers>
+
+
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="checkboxImage" Property="Source" Value="C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\Images\CheckboxChecked.png"/>
+                                <Setter Property="Foreground" Value="White"></Setter>
+                            </Trigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                    <Condition Property="IsChecked" Value="False"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="checkboxImage" Property="Source" Value="C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\Images\CheckboxOnHover.png"/>
+                                <Setter Property="Foreground" Value="White"></Setter>
+                            </MultiTrigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <!--Style voor button-->
+        <Style TargetType="Button" x:Key="Button1">
+            <Setter Property="Padding" Value="7"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="#000"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="MinHeight" Value="20"/>
+            <Setter Property="MinWidth" Value="50"/>
+
+            <Setter Property="FontFamily" Value="Century Gothic"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border"
+                            CornerRadius="10"
+                            BorderBrush="#000"
+                            BorderThickness="2"
+                            Background="#fff"
+                            >
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="FontWeight" Value="Bold" />
+
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--style voor textbox -->
+        <Style TargetType="TextBox" x:Key="Textbox1">
+            <Setter Property="Padding" Value="7"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="MinHeight" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Template">
+
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border"
+                                CornerRadius="30"
+                                BorderBrush="#000"
+                                BorderThickness="2"
+                                Background="#fff"
+                                >
+                            <ScrollViewer 
+                                Margin="5"
+                                x:Name="PART_ContentHost"
+                                Focusable="false"
+                               
+                                
+                                />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+
+                                <Setter Property="Foreground" Value="White" />
+
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="BorderBrush" TargetName="border" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+    </Window.Resources>
+    <!--Zoek bar en catogorien-->
+    <Grid x:Name="GridBacklayer">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="73*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="247*"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel x:Name="Left_DockPanel" LastChildFill="False" Grid.IsSharedSizeScope="True" Background="#FF7E116B">
+            <Grid x:Name="Grdinhoud" VerticalAlignment="Top" Width="362">
+                <Grid x:Name="GrdinGrid" Height="804" VerticalAlignment="Top" Margin="0,96,0,0">
+                    <CheckBox x:Name="cbxLeeftijd" Content=" Leeftijd" VerticalAlignment="Top" Margin="26,230,210,0" FontSize="24" Style="{StaticResource favoriteCheckbox}" BorderThickness="1" RenderTransformOrigin="0.5,0.5" Padding="40 2 0 0" TextOptions.TextFormattingMode="Display" Cursor="Hand" Foreground="White"/>
+
+                    <CheckBox x:Name="cbxThema" Content=" Thema" VerticalAlignment="Top" Margin="164,330,82,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Foreground="White"/>
+                    <CheckBox x:Name="cbxTerein" Content=" Terein" VerticalAlignment="Top" Margin="26,430,220,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource ResourceKey=favoriteCheckbox}" Foreground="White"/>
+                    <CheckBox x:Name="cbxMateriaal" Content=" Materiaal" VerticalAlignment="Top" Margin="164,126,46,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource ResourceKey=favoriteCheckbox}" Foreground="White" Checked="cbxMateriaal_Checked"/>
+                    <CheckBox x:Name="cbxSoort" Content=" Soort spel" VerticalAlignment="Top" Margin="26,630,184,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Foreground="White"/>
+                    <CheckBox x:Name="cbxAlleKoekjes" Content=" Alle koekjes" VerticalAlignment="Top" Margin="26,40,155,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Checked="chxAlleKoekjes_Checked" Foreground="White"/>
+                    <CheckBox x:Name="cbxDuur" Content=" Duur" VerticalAlignment="Top" Margin="164,530,46,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Foreground="White"/>
+                    <CheckBox x:Name="cbxVakanties" Content=" Vakanties" VerticalAlignment="Top" Margin="164,730,46,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Foreground="White"/>
+
+                </Grid>
+                <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Height="52" Margin="10,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Style="{StaticResource Textbox1}" CaretBrush="Black" OpacityMask="Black" TextChanged="txtSearch_TextChanged"/>
+                <Button x:Name="btnZoeken" Content="Zoeken" HorizontalAlignment="Left" Margin="256,44,0,0" VerticalAlignment="Top" Width="96" Style="{StaticResource ResourceKey=Button1}" IsCancel="True" Height="52"/>
+            </Grid>
+        </DockPanel>
+
+        <DockPanel x:Name="RightDockpanel" HorizontalAlignment="Left" LastChildFill="False" Margin="364,0,0,0" Grid.Column="2" Width="0"/>
+        <DockPanel x:Name="DckCentrum" Grid.Column="2" HorizontalAlignment="Center" Height="900" LastChildFill="False" VerticalAlignment="Top">
+            <Grid x:Name="GrdCentrum" Height="840" VerticalAlignment="Top" DockPanel.Dock="Bottom" Loaded="GrdCentrum_Loaded">
+                <Canvas x:Name="myCanvas" Height="60" Margin="0,-65,0,0" VerticalAlignment="Top" Width="1233" HorizontalAlignment="Right" SizeChanged="Mycanvas_SizeChanged" Grid.IsSharedSizeScope="True">
+                    <Border x:Name="BdrMinimize" BorderThickness="1" HorizontalAlignment="Left" Height="60" VerticalAlignment="Bottom" Width="60" MouseEnter="BdrMinimize_MouseEnter" MouseLeave="BdrMinimize_MouseLeave" MouseLeftButtonDown="BdrMinimize_MouseLeftButtonDown" Canvas.Left="1103">
+                        <Label x:Name="lblMinimize" Content="-" Cursor="Hand" FontSize="72" Margin="9,-36,-5,0" RenderTransformOrigin="0.875,-0.4" HorizontalAlignment="Left" Width="54" Height="70" VerticalAlignment="Top"/>
+                    </Border>
+                    <Border x:Name="BdrExit" BorderThickness="1" Height="60" Canvas.Left="1168" Width="65" MouseEnter="BdrExit_MouseEnter_1" MouseLeave="BdrExit_MouseLeave_1" MouseLeftButtonDown="BdrExit_MouseLeftButtonDown">
+                        <Label x:Name="lblExit" Content="X" FontSize="36" RenderTransformOrigin="0.759,0.5" HorizontalContentAlignment="Center" FontFamily="Century Gothic" Cursor="Hand" MouseLeftButtonDown="lblExit_MouseLeftButtonDown_1" HorizontalAlignment="Left" Width="68" Height="58" VerticalAlignment="Bottom" Margin="-1,0,-4,-1"/>
+                    </Border>
+                </Canvas>
+                <Image x:Name="ImgField1" HorizontalAlignment="Left" Height="175" Margin="160,130,0,0" VerticalAlignment="Top" Width="170" Source="Fields.png"/>
+                <Image x:Name="ImgField5" HorizontalAlignment="Left" Height="235" Margin="580,335,0,0" VerticalAlignment="Top" Width="238" Source="Fields.png"/>
+                <Image x:Name="ImgField7" HorizontalAlignment="Left" Height="148" Margin="330,560,0,0" VerticalAlignment="Top" Width="140" Source="Fields.png"/>
+                <Image x:Name="ImgField6" HorizontalAlignment="Left" Height="90" Margin="945,618,0,0" VerticalAlignment="Top" Width="105" Source="Fields.png"/>
+                <Image x:Name="ImgField4" HorizontalAlignment="Left" Height="128" Margin="1042,335,0,0" VerticalAlignment="Top" Width="128" Source="Fields.png"/>
+                <Image x:Name="ImgField3" HorizontalAlignment="Left" Height="155" Margin="945,30,0,0" VerticalAlignment="Top" Width="170" Source="Fields.png" RenderTransformOrigin="1.029,0.452"/>
+                <Image x:Name="ImgField2" HorizontalAlignment="Left" Height="150" Margin="580,90,0,0" VerticalAlignment="Top" Width="133" Source="Fields.png"/>
+            </Grid>
+        </DockPanel>
+
+    </Grid>
+
+
+</Window>
