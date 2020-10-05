@@ -1,0 +1,30 @@
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\bin\Debug\Krunsj V1.exe.config
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\bin\Debug\Krunsj V1.exe
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\bin\Debug\Krunsj V1.pdb
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\obj\Debug\Krunsj V1.csprojAssemblyReference.cache
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\obj\Debug\App.g.cs
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\obj\Debug\Krunsj V1_MarkupCompile.cache
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\obj\Debug\Krunsj_V1.Properties.Resources.resources
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\obj\Debug\Krunsj V1.csproj.GenerateResource.cache
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\obj\Debug\Krunsj V1.exe
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\obj\Debug\Krunsj V1.pdb
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\obj\Debug\Mainwindow.g.cs
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\obj\Debug\Krunsj V1_MarkupCompile.lref
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\obj\Debug\Mainwindow.baml
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\obj\Debug\Krunsj V1.g.resources
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\bin\Debug\Bunifu_UI_v1.52.dll
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\obj\Debug\Krunsj V1.csproj.CopyComplete
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\bin\Debug\MaterialDesignColors.dll
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\bin\Debug\MaterialDesignColors.pdb
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\obj\Debug\Krunsj_V1.Officiallogin.resources
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\obj\Debug\Krunsj_V1.Register.resources
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\bin\Debug\MySql.Data.dll
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\bin\Debug\Google.Protobuf.dll
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\bin\Debug\Renci.SshNet.dll
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\bin\Debug\MySql.Data.xml
+C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\obj\Debug\Krunsj V1_Content.g.cs
