@@ -22,8 +22,9 @@ namespace Krunsj_V1
     {
         public Mainwindow()
         {
-            this.Visibility = Visibility.Hidden;
             InitializeComponent();
+            this.Visibility = Visibility.Hidden;
+
             Register Login = new Register();
 
             Officiallogin form = new Officiallogin();
@@ -31,170 +32,209 @@ namespace Krunsj_V1
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
 
         }
-        public Mainwindow(bool doNotMakeInvisibile)
-        {
 
-            this.WindowStyle = WindowStyle.None;
-            this.WindowState = WindowState.Normal;
-            InitializeComponent();
+        
 
-
-
-
-
-
-        }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void chxAlleKoekjes_Checked(object sender, RoutedEventArgs e)
-        {
-            if (cbxAlleKoekjes.IsChecked.HasValue)
+            public Mainwindow(bool doNotMakeInvisibile)
             {
-                if (cbxAlleKoekjes.IsChecked.HasValue == true)
+
+                this.WindowStyle = WindowStyle.None;
+                this.WindowState = WindowState.Normal;
+                InitializeComponent();
+
+
+
+
+
+
+            }
+
+        #region Methodes
+        private void CategoryReset(CheckBox checkBox)
+        {
+            if (checkBox.IsChecked == false)
+            {
+                chkAlleKoekjes.IsChecked = false;
+                foreach (CheckBox otherCheckboxes in lstCheckboxItems.Items)
                 {
-                    cbxLeeftijd.IsChecked = true;
-                    cbxMateriaal.IsChecked = true;
-                    cbxSoort.IsChecked = true;
-                    cbxTerein.IsChecked = true;
-                    cbxThema.IsChecked = true;
-                    cbxDuur.IsChecked = true;
-                    cbxVakanties.IsChecked = true;
-                }
-                if (cbxAlleKoekjes.IsChecked.HasValue == false)
-                {
-
-                    cbxLeeftijd.IsChecked = false;
-                    cbxMateriaal.IsChecked = false;
-                    cbxSoort.IsChecked = false;
-                    cbxTerein.IsChecked = false;
-                    cbxThema.IsChecked = false;
-                    cbxDuur.IsChecked = false;
-                    cbxVakanties.IsChecked = false;
-
-
+                    otherCheckboxes.IsChecked = false;
                 }
             }
         }
 
+        private void CreateLabel(string labelName)
+        {
+            //Best werken met een list waardat alles bewaard wordt van namen
+            
+        }
+        #endregion
 
+        #region EventHandelers
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+            {
 
+            }
 
+            private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+            {
+
+            }
 
 
 
 
         //window bar
+        #region Windowbar properties
         //color
         private void BdrMinimize_MouseEnter(object sender, MouseEventArgs e)
-        {
-            BdrMinimize.Background = Brushes.Orchid;
+            {
+                BdrMinimize.Background = Brushes.Orchid;
 
-        }
-
-
-        private void BdrExit_MouseEnter_1(object sender, MouseEventArgs e)
-        {
-            BdrExit.Background = Brushes.Orchid;
-        }
-
-        private void BdrMinimize_MouseLeave(object sender, MouseEventArgs e)
-        {
-            BdrMinimize.Background = Brushes.Transparent;
-        }
+            }
 
 
+            private void BdrExit_MouseEnter_1(object sender, MouseEventArgs e)
+            {
+                BdrExit.Background = Brushes.Orchid;
+            }
 
-        private void BdrExit_MouseLeave_1(object sender, MouseEventArgs e)
-        {
-            BdrExit.Background = Brushes.Transparent;
-        }
+            private void BdrMinimize_MouseLeave(object sender, MouseEventArgs e)
+            {
+                BdrMinimize.Background = Brushes.Transparent;
+            }
 
+
+
+            private void BdrExit_MouseLeave_1(object sender, MouseEventArgs e)
+            {
+                BdrExit.Background = Brushes.Transparent;
+            }
+        #endregion
+        #region functionality
         //functionality
-        private void lblExit_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
-        {
-            try
+            private void lblExit_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
             {
-                System.Windows.Application.Current.Shutdown();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-        private void BdrExit_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            try
-            {
-                System.Windows.Application.Current.Shutdown();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-
-
-        private void BdrMinimize_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            try
-            {
-                this.WindowState = WindowState.Minimized;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void Krunsj_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-
-        }
-
-        private void Mycanvas_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            myCanvas.Width = e.NewSize.Width;
-            myCanvas.Height = e.NewSize.Height;
-
-
-            double xChange = 1, yChange = 1;
-
-            if (e.PreviousSize.Width != 0)
-                xChange = (e.NewSize.Width / e.PreviousSize.Width);
-
-            if (e.PreviousSize.Height != 0)
-                yChange = (e.NewSize.Height / e.PreviousSize.Height);
-
-            ScaleTransform scale = new ScaleTransform(myCanvas.LayoutTransform.Value.M11 * xChange, myCanvas.LayoutTransform.Value.M22 * yChange);
-            myCanvas.LayoutTransform = scale;
-            myCanvas.UpdateLayout();
-        }
-
-        private void GrdCentrum_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void cbxMateriaal_Checked(object sender, RoutedEventArgs e)
-        {
-            if (cbxAlleKoekjes.IsChecked.HasValue == false)
-            {
-                cbxMateriaal.IsChecked = false;
+                try
+                {
+                    System.Windows.Application.Current.Shutdown();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
 
+            private void BdrExit_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+            {
+                try
+                {
+                    System.Windows.Application.Current.Shutdown();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+
+
+            private void BdrMinimize_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+            {
+                try
+                {
+                    this.WindowState = WindowState.Minimized;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            private void Krunsj_MouseDown(object sender, MouseButtonEventArgs e)
+            {
+                this.DragMove();
+
+            }
+
+            private void Mycanvas_SizeChanged(object sender, SizeChangedEventArgs e)
+            {
+                myCanvas.Width = e.NewSize.Width;
+                myCanvas.Height = e.NewSize.Height;
+
+
+                double xChange = 1, yChange = 1;
+
+                if (e.PreviousSize.Width != 0)
+                    xChange = (e.NewSize.Width / e.PreviousSize.Width);
+
+                if (e.PreviousSize.Height != 0)
+                    yChange = (e.NewSize.Height / e.PreviousSize.Height);
+
+                ScaleTransform scale = new ScaleTransform(myCanvas.LayoutTransform.Value.M11 * xChange, myCanvas.LayoutTransform.Value.M22 * yChange);
+                myCanvas.LayoutTransform = scale;
+                myCanvas.UpdateLayout();
+            }
+        #endregion
+
+        #region Categories (eventhandler: click)
+        private void chkAlleKoekjes_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (CheckBox checkbox in lstCheckboxItems.Items)
+            {
+
+                if (chkAlleKoekjes.IsChecked == true)
+                {
+                    checkbox.IsChecked = true;
+
+                }
+                else
+                {
+                    checkbox.IsChecked = false;
+
+                }
+            }
+
         }
+
+        private void chkMateriaal_Click(object sender, RoutedEventArgs e)
+        {
+            CategoryReset(chkMateriaal);
+        }
+
+        private void chkLeeftijd_Click(object sender, RoutedEventArgs e)
+        {
+            CategoryReset(chkLeeftijd);
+        }
+
+        private void chkThema_Click(object sender, RoutedEventArgs e)
+        {
+            CategoryReset(chkThema);
+        }
+
+        private void chkterein_Click(object sender, RoutedEventArgs e)
+        {
+            CategoryReset(chkterein);
+        }
+
+        private void chkDuur_Click(object sender, RoutedEventArgs e)
+        {
+            CategoryReset(chkDuur);
+        }
+
+        private void chkSoortSpel_Click(object sender, RoutedEventArgs e)
+        {
+            CategoryReset(chkSoortSpel);
+        }
+
+        private void chkVakanties_Click(object sender, RoutedEventArgs e)
+        {
+            CategoryReset(chkVakanties);
+        }
+        #endregion
+        #endregion
     }
 }
+
 
 
