@@ -33,9 +33,19 @@ namespace Krunsj_V1
 
         }
 
+
+        #region declartions
+        //default settings
+        private int left;
+        private int top;
+        //private string[] cookieNames = {"Materiaal", "Leeftijd", "Thema", "Terein", "Duur", "Soort Spel", "Vakanties"};
+        private List<string> cookieNames = new List<string>();
+        private bool[] checkState = { false, false, false, false, false, false, false };
+        private object[] cookies = new object[7];
         
 
-            public Mainwindow(bool doNotMakeInvisibile)
+        #endregion
+        public Mainwindow(bool doNotMakeInvisibile)
             {
 
                 this.WindowStyle = WindowStyle.None;
@@ -50,6 +60,8 @@ namespace Krunsj_V1
             }
 
         #region Methodes
+
+        
         private void CategoryReset(CheckBox checkBox)
         {
             if (checkBox.IsChecked == false)
@@ -62,9 +74,51 @@ namespace Krunsj_V1
             }
         }
 
-        private void CreateLabel(string labelName)
+        
+
+        private object CreateStackPanel(string nameStackPanel)
         {
-            //Best werken met een list waardat alles bewaard wordt van namen
+            StackPanel myStackPanel = new StackPanel();
+            myStackPanel.Orientation = Orientation.Horizontal;
+            
+
+            Image myImage = new Image();
+            BitmapImage myImageSource = new BitmapImage();
+            myImageSource.BeginInit();
+            myImageSource.UriSource = new Uri("C:/Users/Tobias Hungwe/Desktop/Projecten/KrunsjV1/Krunsj V1/Images/Fields.png");
+            myImageSource.EndInit();
+            myImage.Source = myImageSource;
+            
+
+            TextBlock myTextBlock = new TextBlock();
+            myTextBlock.Text = $"{nameStackPanel}";
+            #region Positioning
+            Random rnd = new Random();
+            int minTop = 10;
+            int maxTop = 635;
+            int minLeft = 10;
+            int maxLeft = 1023;
+            top = rnd.Next(minTop, maxTop);
+            left = rnd.Next(minLeft, maxLeft);
+            int bottom = maxTop - top;
+            int right = maxLeft - left;
+
+            Grid myGrid = new Grid();
+            myGrid.Height = 170;
+            
+            
+            //size object
+            myStackPanel.Width = 200;
+            myStackPanel.Height = 200;
+            myStackPanel.Margin = new Thickness(left, top, right, bottom);
+
+            #endregion
+            myStackPanel.Children.Add(myImage);
+            myStackPanel.Children.Add(myGrid);
+            myStackPanel.Children.Add(myTextBlock);
+            GrdCentrum.Children.Add(myStackPanel);
+            myStackPanel.Name = nameStackPanel;
+            return myStackPanel;
             
         }
         #endregion
@@ -73,7 +127,7 @@ namespace Krunsj_V1
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
             {
-
+                
             }
 
             private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -186,6 +240,7 @@ namespace Krunsj_V1
                 if (chkAlleKoekjes.IsChecked == true)
                 {
                     checkbox.IsChecked = true;
+                    
 
                 }
                 else
@@ -193,6 +248,7 @@ namespace Krunsj_V1
                     checkbox.IsChecked = false;
 
                 }
+                
             }
 
         }
@@ -200,6 +256,8 @@ namespace Krunsj_V1
         private void chkMateriaal_Click(object sender, RoutedEventArgs e)
         {
             CategoryReset(chkMateriaal);
+            CreateStackPanel("Materiaal");
+            
         }
 
         private void chkLeeftijd_Click(object sender, RoutedEventArgs e)
@@ -232,7 +290,13 @@ namespace Krunsj_V1
             CategoryReset(chkVakanties);
         }
         #endregion
+
         #endregion
+
+        private void GrdCentrum_Loaded(object sender, RoutedEventArgs e)
+        {
+           
+        }
     }
 }
 

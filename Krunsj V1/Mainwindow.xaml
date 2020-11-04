@@ -211,7 +211,10 @@
         <!--keuze menu op basis van geselecteerd-->
         <DockPanel x:Name="RightDockpanel" HorizontalAlignment="Left" LastChildFill="False" Margin="364,0,0,0" Grid.Column="2" Width="0"/>
         <DockPanel x:Name="DckCentrum" Grid.Column="2" HorizontalAlignment="Center" Height="900" LastChildFill="False" VerticalAlignment="Top">
-            <Grid x:Name="GrdCentrum" Height="840" VerticalAlignment="Top" DockPanel.Dock="Bottom">
+            <Grid x:Name="GrdCentrum" Height="845" VerticalAlignment="Top" DockPanel.Dock="Bottom" Loaded="GrdCentrum_Loaded">
+                <Grid.Background>
+                    <ImageBrush/>
+                </Grid.Background>
                 <Canvas x:Name="myCanvas" Height="60" Margin="0,-65,0,0" VerticalAlignment="Top" Width="1233" HorizontalAlignment="Right" SizeChanged="Mycanvas_SizeChanged" Grid.IsSharedSizeScope="True">
                     <Border x:Name="BdrMinimize" BorderThickness="1" HorizontalAlignment="Left" Height="60" VerticalAlignment="Bottom" Width="60" MouseEnter="BdrMinimize_MouseEnter" MouseLeave="BdrMinimize_MouseLeave" MouseLeftButtonDown="BdrMinimize_MouseLeftButtonDown" Canvas.Left="1103">
                         <Label x:Name="lblMinimize" Content="-" Cursor="Hand" FontSize="72" Margin="9,-36,-5,0" RenderTransformOrigin="0.875,-0.4" HorizontalAlignment="Left" Width="54" Height="70" VerticalAlignment="Top"/>
@@ -220,13 +223,14 @@
                         <Label x:Name="lblExit" Content="X" FontSize="36" RenderTransformOrigin="0.759,0.5" HorizontalContentAlignment="Center" FontFamily="Century Gothic" Cursor="Hand" MouseLeftButtonDown="lblExit_MouseLeftButtonDown_1" Height="58" VerticalAlignment="Bottom" Margin="-1,0,-1,-1" HorizontalAlignment="Left" Width="65"/>
                     </Border>
                 </Canvas>
-                <Image x:Name="ImgField1" HorizontalAlignment="Left" Height="175" Margin="160,130,0,0" VerticalAlignment="Top" Width="170" Source="Fields.png"/>
-                <Image x:Name="ImgField5" HorizontalAlignment="Left" Height="235" Margin="580,335,0,0" VerticalAlignment="Top" Width="238" Source="Fields.png"/>
-                <Image x:Name="ImgField7" HorizontalAlignment="Left" Height="148" Margin="330,560,0,0" VerticalAlignment="Top" Width="140" Source="Fields.png"/>
-                <Image x:Name="ImgField6" HorizontalAlignment="Left" Height="90" Margin="945,618,0,0" VerticalAlignment="Top" Width="105" Source="Fields.png"/>
-                <Image x:Name="ImgField4" HorizontalAlignment="Left" Height="128" Margin="1042,335,0,0" VerticalAlignment="Top" Width="128" Source="Fields.png"/>
-                <Image x:Name="ImgField3" HorizontalAlignment="Left" Height="155" Margin="945,30,0,0" VerticalAlignment="Top" Width="170" Source="Fields.png" RenderTransformOrigin="1.029,0.452"/>
-                <Image x:Name="ImgField2" HorizontalAlignment="Left" Height="150" Margin="580,90,0,0" VerticalAlignment="Top" Width="133" Source="Fields.png"/>
+                <StackPanel Margin="0,0,983,610" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="Images/Fields.png"/>
+                    </StackPanel.Background>
+                  
+
+
+                </StackPanel>
             </Grid>
         </DockPanel>
 

@@ -46,7 +46,6 @@ C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\bin\Debug\MySql.Data
 C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\obj\Debug\Krunsj V1.csprojAssemblyReference.cache
 C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\obj\Debug\Mainwindow.g.cs
 C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\obj\Debug\App.g.cs
-C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\obj\Debug\Krunsj V1_Content.g.cs
 C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\obj\Debug\Krunsj V1_MarkupCompile.cache
 C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\obj\Debug\Krunsj V1_MarkupCompile.lref
 C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\obj\Debug\Mainwindow.baml
