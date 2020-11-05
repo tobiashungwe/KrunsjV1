@@ -58,3 +58,5 @@ C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\obj\Debug\Krunsj V1.
 C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\obj\Debug\Krunsj V1.csproj.CopyComplete
 C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\obj\Debug\Krunsj V1.exe
 C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\obj\Debug\Krunsj V1.pdb
+C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\bin\Debug\Krunsj_V1.Lib.Framework.dll
+C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\bin\Debug\Krunsj_V1.Lib.Framework.pdb

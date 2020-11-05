@@ -1,0 +1,4 @@
+C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj.Lib.Core\obj\Debug\netcoreapp3.1\Krunsj.Lib.Core.csprojAssemblyReference.cache
+C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj.Lib.Core\obj\Debug\netcoreapp3.1\Krunsj.Lib.Core.AssemblyInfoInputs.cache
+C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj.Lib.Core\obj\Debug\netcoreapp3.1\Krunsj.Lib.Core.AssemblyInfo.cs
+C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj.Lib.Core\obj\Debug\netcoreapp3.1\Krunsj.Lib.Core.csproj.CoreCompileInputs.cache

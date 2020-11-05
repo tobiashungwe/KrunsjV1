@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("fields.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("fonts/sweetcreamy.ttf")]
 
 

@@ -177,10 +177,19 @@
             </Setter>
         </Style>
 
+        <Style TargetType="Label" x:Key="CustomFont">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="FontFamily" Value="Fonts/SweetCreamy.ttf #Sweet Creamy"/>
+        </Style>
+
+
 
 
 
     </Window.Resources>
+    
     <!--Zoek bar en catogorien-->
     <Grid x:Name="GridBacklayer">
         <Grid.ColumnDefinitions>
@@ -192,8 +201,8 @@
             <Grid x:Name="Grdinhoud" VerticalAlignment="Top" Width="362">
                 <Grid x:Name="GrdinGrid" Height="804" VerticalAlignment="Top" Margin="0,96,0,0">
                     <CheckBox x:Name="chkAlleKoekjes" Content=" Alle koekjes" VerticalAlignment="Top" Margin="155,35,26,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Foreground="White" Click="chkAlleKoekjes_Click"/>
-                    <ListBox x:Name="lstCheckboxItems" ItemContainerStyle="{StaticResource ListBoxItemStyleTransparentSelect}"  Margin="0,134,0,-45" HorizontalAlignment="Right" Width="362" Background="{x:Null}" BorderBrush="{x:Null}">
-                        <CheckBox x:Name="chkMateriaal" Content="Materiaal" FontSize="24"  Foreground="White" Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="0" Click="chkMateriaal_Click"/>
+                    <ListBox x:Name="lstCheckboxItems" ItemContainerStyle="{StaticResource ListBoxItemStyleTransparentSelect}"  Margin="0,134,0,-45" HorizontalAlignment="Right" Width="362" Background="{x:Null}" BorderBrush="{x:Null}" >
+                        <CheckBox x:Name="chkMateriaal" Content="Materiaal" FontSize="24"  Foreground="White" Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="0" Click="chkMateriaal_Click" />
                         <CheckBox x:Name="chkLeeftijd" Content="Leeftijd" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Width="130" Click="chkLeeftijd_Click"/>
                         <CheckBox x:Name="chkThema" Content="Thema" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Click="chkThema_Click"/>
                         <CheckBox x:Name="chkterein" Content="Terein" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Click="chkterein_Click"/>
@@ -223,11 +232,81 @@
                         <Label x:Name="lblExit" Content="X" FontSize="36" RenderTransformOrigin="0.759,0.5" HorizontalContentAlignment="Center" FontFamily="Century Gothic" Cursor="Hand" MouseLeftButtonDown="lblExit_MouseLeftButtonDown_1" Height="58" VerticalAlignment="Bottom" Margin="-1,0,-1,-1" HorizontalAlignment="Left" Width="65"/>
                     </Border>
                 </Canvas>
-                <StackPanel Margin="0,0,983,610" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+
+                <StackPanel x:Name="stackMateriaal" x:Uid="" Margin="0,0,1013,610" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="Images/Fields.png"/>
                     </StackPanel.Background>
-                  
+                    <Grid Height="170">
+                        <Label x:Name="lblMateriaal" Content="Materiaal" HorizontalAlignment="Left" Margin="18,95,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded"/>
+                    </Grid>
+
+
+
+                </StackPanel>
+                <StackPanel x:Name="stackLeeftijd"  Margin="0,0,698,610" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="Images/Fields.png"/>
+                    </StackPanel.Background>
+                    <Grid Height="170">
+                        <Label x:Name="lblLeeftijd" Content="Leeftijd" HorizontalAlignment="Left" Margin="30,95,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded"/>
+                    </Grid>
+
+
+
+                </StackPanel>
+                <StackPanel x:Name="stackThema" Margin="0,0,408,610" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="Images/Fields.png"/>
+                    </StackPanel.Background>
+                    <Grid Height="170">
+                        <Label x:Name="lblThema" Content="Thema" HorizontalAlignment="Left" Margin="41,96,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded" RenderTransformOrigin="0.479,0.773"/>
+                    </Grid>
+
+
+
+                </StackPanel>
+                <StackPanel x:Name="stackTerein" Margin="0,0,83,610" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="Images/Fields.png"/>
+                    </StackPanel.Background>
+                    <Grid Height="170">
+                        <Label x:Name="lblTerein" Content="Terein" HorizontalAlignment="Left" Margin="45,95,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded"/>
+                    </Grid>
+
+
+
+                </StackPanel>
+                <StackPanel x:Name="stackDuur" Margin="0,0,1013,340" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="Images/Fields.png"/>
+                    </StackPanel.Background>
+                    <Grid Height="170">
+                        <Label x:Name="lblDuur" Content="Duur" HorizontalAlignment="Left" Margin="48,85,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded" FontFamily="/Krunsj V1;component/Fonts/#Sweet Creamy"/>
+                    </Grid>
+
+
+
+                </StackPanel>
+                <StackPanel x:Name="stackSoortSpel" Margin="0,0,698,340" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="Images/Fields.png"/>
+                    </StackPanel.Background>
+                    <Grid Height="170">
+                        <Label x:Name="lblSoortSpel" Content="Soort Spel" HorizontalAlignment="Left" Margin="18,85,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded"/>
+                    </Grid>
+
+
+
+                </StackPanel>
+                <StackPanel x:Name="stackVakanties" Margin="0,0,408,340" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="Images/Fields.png"/>
+                    </StackPanel.Background>
+                    <Grid Height="170">
+                        <Label x:Name="lblVakanties" Content="Vakanties" HorizontalAlignment="Left" Margin="18,85,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded"/>
+                    </Grid>
+
 
 
                 </StackPanel>
