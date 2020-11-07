@@ -197,18 +197,18 @@
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="247*"/>
         </Grid.ColumnDefinitions>
-        <DockPanel x:Name="Left_DockPanel" LastChildFill="False" Grid.IsSharedSizeScope="True" Background="#FF7E116B">
+        <DockPanel x:Name="Left_DockPanel" LastChildFill="False" Grid.IsSharedSizeScope="True" Background="#FF7E116B" MouseMove="Left_DockPanel_MouseMove">
             <Grid x:Name="Grdinhoud" VerticalAlignment="Top" Width="362">
                 <Grid x:Name="GrdinGrid" Height="804" VerticalAlignment="Top" Margin="0,96,0,0">
-                    <CheckBox x:Name="chkAlleKoekjes" Content=" Alle koekjes" VerticalAlignment="Top" Margin="155,35,26,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Foreground="White" Click="chkAlleKoekjes_Click"/>
-                    <ListBox x:Name="lstCheckboxItems" ItemContainerStyle="{StaticResource ListBoxItemStyleTransparentSelect}"  Margin="0,134,0,-45" HorizontalAlignment="Right" Width="362" Background="{x:Null}" BorderBrush="{x:Null}" >
-                        <CheckBox x:Name="chkMateriaal" Content="Materiaal" FontSize="24"  Foreground="White" Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="0" Click="chkMateriaal_Click" />
-                        <CheckBox x:Name="chkLeeftijd" Content="Leeftijd" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Width="130" Click="chkLeeftijd_Click"/>
-                        <CheckBox x:Name="chkThema" Content="Thema" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Click="chkThema_Click"/>
-                        <CheckBox x:Name="chkterein" Content="Terein" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Click="chkterein_Click"/>
-                        <CheckBox x:Name="chkDuur" Content="Duur" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Click="chkDuur_Click"/>
-                        <CheckBox x:Name="chkSoortSpel" Content="Soort spel" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Click="chkSoortSpel_Click"/>
-                        <CheckBox x:Name="chkVakanties"  Content="Vakanties" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Click="chkVakanties_Click"/>
+                    <CheckBox x:Name="chkAlleKoekjes" Content=" Alle koekjes" VerticalAlignment="Top" Margin="155,35,26,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Foreground="White" Checked="chkAlleKoekjes_Checked" Unchecked="chkAlleKoekjes_Unchecked" Click="chkAlleKoekjes_Click"/>
+                    <ListBox x:Name="lstCheckboxItems" ItemContainerStyle="{StaticResource ListBoxItemStyleTransparentSelect}"  Margin="0,134,0,-45" HorizontalAlignment="Right" Width="362" Background="{x:Null}" BorderBrush="{x:Null}" SelectionChanged="lstCheckboxItems_SelectionChanged" >
+                        <CheckBox x:Name="chkMateriaal" Content="Materiaal" FontSize="24"  Foreground="White" Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="0"  Checked="chkMateriaal_Checked" Unchecked="chkMateriaal_Unchecked" />
+                        <CheckBox x:Name="chkLeeftijd" Content="Leeftijd" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Width="130" Checked="chkLeeftijd_Checked" Unchecked="chkLeeftijd_Unchecked"/>
+                        <CheckBox x:Name="chkThema" Content="Thema" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkThema_Checked" Unchecked="chkThema_Unchecked" />
+                        <CheckBox x:Name="chkterein" Content="Terein" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Checked="chkterein_Checked" Unchecked="chkterein_Unchecked" />
+                        <CheckBox x:Name="chkDuur" Content="Duur" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkDuur_Checked" Unchecked="chkDuur_Unchecked"/>
+                        <CheckBox x:Name="chkSoortSpel" Content="Soort spel" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Checked="chkSoortSpel_Checked" Unchecked="chkSoortSpel_Unchecked" />
+                        <CheckBox x:Name="chkVakanties"  Content="Vakanties" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkVakanties_Checked" Unchecked="chkVakanties_Unchecked" />
                     </ListBox>
 
                 </Grid>
