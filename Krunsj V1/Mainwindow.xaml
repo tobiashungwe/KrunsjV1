@@ -25,7 +25,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type CheckBox}">
                         <StackPanel Orientation="Horizontal">
-                            <Image x:Name="checkboxImage" Source="C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\Images\CheckboxUncheched.png" Width="32"/>
+                            <Image x:Name="checkboxImage" Source="C:\Users\Tobias Hungwe\Desktop\Projecten\Krunsj V1\Krunsj V1\Images\CheckboxUncheched.png" Width="32"/>
                             <ContentPresenter/>
                         </StackPanel>
 
@@ -33,7 +33,7 @@
 
 
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="checkboxImage" Property="Source" Value="C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\Images\CheckboxChecked.png"/>
+                                <Setter TargetName="checkboxImage" Property="Source" Value="C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\Images\CheckboxChecked.png"/>
                                 <Setter Property="Foreground" Value="White"></Setter>
                             </Trigger>
 
@@ -42,7 +42,7 @@
                                     <Condition Property="IsMouseOver" Value="True"/>
                                     <Condition Property="IsChecked" Value="False"/>
                                 </MultiTrigger.Conditions>
-                                <Setter TargetName="checkboxImage" Property="Source" Value="C:\Users\Tobias Hungwe\source\repos\Krunsj V1\Krunsj V1\Images\CheckboxOnHover.png"/>
+                                <Setter TargetName="checkboxImage" Property="Source" Value="C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\Images\CheckboxOnHover.png"/>
                                 <Setter Property="Foreground" Value="White"></Setter>
                             </MultiTrigger>
 
@@ -131,9 +131,65 @@
             </Setter>
         </Style>
 
+        <Style x:Key="ListBoxItemStyleTransparentSelect" TargetType="ListBoxItem">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Top"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Grid Background="{TemplateBinding Background}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To=".35" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="fillColor"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To=".55" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="contentPresenter"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualState x:Name="Unselected"/>
+                                    <VisualState x:Name="Selected"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused"/>
+                                    <VisualState x:Name="Unfocused"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Rectangle x:Name="fillColor" IsHitTestVisible="False" Opacity="0" RadiusY="1" RadiusX="1"/>
+                            <Rectangle x:Name="fillColor2" IsHitTestVisible="False" Opacity="0" RadiusY="1" RadiusX="1"/>
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}"/>
+                            <Rectangle x:Name="FocusVisualElement" RadiusY="1" RadiusX="1" StrokeThickness="1" Visibility="Collapsed"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Label" x:Key="CustomFont">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="FontFamily" Value="Fonts/SweetCreamy.ttf #Sweet Creamy"/>
+        </Style>
+
+
+
 
 
     </Window.Resources>
+    
     <!--Zoek bar en catogorien-->
     <Grid x:Name="GridBacklayer">
         <Grid.ColumnDefinitions>
@@ -144,40 +200,116 @@
         <DockPanel x:Name="Left_DockPanel" LastChildFill="False" Grid.IsSharedSizeScope="True" Background="#FF7E116B">
             <Grid x:Name="Grdinhoud" VerticalAlignment="Top" Width="362">
                 <Grid x:Name="GrdinGrid" Height="804" VerticalAlignment="Top" Margin="0,96,0,0">
-                    <CheckBox x:Name="cbxLeeftijd" Content=" Leeftijd" VerticalAlignment="Top" Margin="26,230,210,0" FontSize="24" Style="{StaticResource favoriteCheckbox}" BorderThickness="1" RenderTransformOrigin="0.5,0.5" Padding="40 2 0 0" TextOptions.TextFormattingMode="Display" Cursor="Hand" Foreground="White"/>
-
-                    <CheckBox x:Name="cbxThema" Content=" Thema" VerticalAlignment="Top" Margin="164,330,82,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Foreground="White"/>
-                    <CheckBox x:Name="cbxTerein" Content=" Terein" VerticalAlignment="Top" Margin="26,430,220,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource ResourceKey=favoriteCheckbox}" Foreground="White"/>
-                    <CheckBox x:Name="cbxMateriaal" Content=" Materiaal" VerticalAlignment="Top" Margin="164,126,46,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource ResourceKey=favoriteCheckbox}" Foreground="White" Checked="cbxMateriaal_Checked"/>
-                    <CheckBox x:Name="cbxSoort" Content=" Soort spel" VerticalAlignment="Top" Margin="26,630,184,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Foreground="White"/>
-                    <CheckBox x:Name="cbxAlleKoekjes" Content=" Alle koekjes" VerticalAlignment="Top" Margin="26,40,155,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Checked="chxAlleKoekjes_Checked" Foreground="White"/>
-                    <CheckBox x:Name="cbxDuur" Content=" Duur" VerticalAlignment="Top" Margin="164,530,46,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Foreground="White"/>
-                    <CheckBox x:Name="cbxVakanties" Content=" Vakanties" VerticalAlignment="Top" Margin="164,730,46,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Foreground="White"/>
+                    <CheckBox x:Name="chkAlleKoekjes" Content=" Alle koekjes" VerticalAlignment="Top" Margin="155,35,26,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Foreground="White" Click="chkAlleKoekjes_Click"/>
+                    <ListBox x:Name="lstCheckboxItems" ItemContainerStyle="{StaticResource ListBoxItemStyleTransparentSelect}"  Margin="0,134,0,-45" HorizontalAlignment="Right" Width="362" Background="{x:Null}" BorderBrush="{x:Null}" >
+                        <CheckBox x:Name="chkMateriaal" Content="Materiaal" FontSize="24"  Foreground="White" Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="0" Click="chkMateriaal_Click" />
+                        <CheckBox x:Name="chkLeeftijd" Content="Leeftijd" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Width="130" Click="chkLeeftijd_Click"/>
+                        <CheckBox x:Name="chkThema" Content="Thema" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Click="chkThema_Click"/>
+                        <CheckBox x:Name="chkterein" Content="Terein" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Click="chkterein_Click"/>
+                        <CheckBox x:Name="chkDuur" Content="Duur" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Click="chkDuur_Click"/>
+                        <CheckBox x:Name="chkSoortSpel" Content="Soort spel" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Click="chkSoortSpel_Click"/>
+                        <CheckBox x:Name="chkVakanties"  Content="Vakanties" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Click="chkVakanties_Click"/>
+                    </ListBox>
 
                 </Grid>
+
                 <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Height="52" Margin="10,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Style="{StaticResource Textbox1}" CaretBrush="Black" OpacityMask="Black" TextChanged="txtSearch_TextChanged"/>
                 <Button x:Name="btnZoeken" Content="Zoeken" HorizontalAlignment="Left" Margin="256,44,0,0" VerticalAlignment="Top" Width="96" Style="{StaticResource ResourceKey=Button1}" IsCancel="True" Height="52"/>
             </Grid>
         </DockPanel>
-
+        <!--keuze menu op basis van geselecteerd-->
         <DockPanel x:Name="RightDockpanel" HorizontalAlignment="Left" LastChildFill="False" Margin="364,0,0,0" Grid.Column="2" Width="0"/>
         <DockPanel x:Name="DckCentrum" Grid.Column="2" HorizontalAlignment="Center" Height="900" LastChildFill="False" VerticalAlignment="Top">
-            <Grid x:Name="GrdCentrum" Height="840" VerticalAlignment="Top" DockPanel.Dock="Bottom" Loaded="GrdCentrum_Loaded">
+            <Grid x:Name="GrdCentrum" Height="845" VerticalAlignment="Top" DockPanel.Dock="Bottom" Loaded="GrdCentrum_Loaded">
+                <Grid.Background>
+                    <ImageBrush/>
+                </Grid.Background>
                 <Canvas x:Name="myCanvas" Height="60" Margin="0,-65,0,0" VerticalAlignment="Top" Width="1233" HorizontalAlignment="Right" SizeChanged="Mycanvas_SizeChanged" Grid.IsSharedSizeScope="True">
                     <Border x:Name="BdrMinimize" BorderThickness="1" HorizontalAlignment="Left" Height="60" VerticalAlignment="Bottom" Width="60" MouseEnter="BdrMinimize_MouseEnter" MouseLeave="BdrMinimize_MouseLeave" MouseLeftButtonDown="BdrMinimize_MouseLeftButtonDown" Canvas.Left="1103">
                         <Label x:Name="lblMinimize" Content="-" Cursor="Hand" FontSize="72" Margin="9,-36,-5,0" RenderTransformOrigin="0.875,-0.4" HorizontalAlignment="Left" Width="54" Height="70" VerticalAlignment="Top"/>
                     </Border>
                     <Border x:Name="BdrExit" BorderThickness="1" Height="60" Canvas.Left="1168" Width="65" MouseEnter="BdrExit_MouseEnter_1" MouseLeave="BdrExit_MouseLeave_1" MouseLeftButtonDown="BdrExit_MouseLeftButtonDown">
-                        <Label x:Name="lblExit" Content="X" FontSize="36" RenderTransformOrigin="0.759,0.5" HorizontalContentAlignment="Center" FontFamily="Century Gothic" Cursor="Hand" MouseLeftButtonDown="lblExit_MouseLeftButtonDown_1" HorizontalAlignment="Left" Width="68" Height="58" VerticalAlignment="Bottom" Margin="-1,0,-4,-1"/>
+                        <Label x:Name="lblExit" Content="X" FontSize="36" RenderTransformOrigin="0.759,0.5" HorizontalContentAlignment="Center" FontFamily="Century Gothic" Cursor="Hand" MouseLeftButtonDown="lblExit_MouseLeftButtonDown_1" Height="58" VerticalAlignment="Bottom" Margin="-1,0,-1,-1" HorizontalAlignment="Left" Width="65"/>
                     </Border>
                 </Canvas>
-                <Image x:Name="ImgField1" HorizontalAlignment="Left" Height="175" Margin="160,130,0,0" VerticalAlignment="Top" Width="170" Source="Fields.png"/>
-                <Image x:Name="ImgField5" HorizontalAlignment="Left" Height="235" Margin="580,335,0,0" VerticalAlignment="Top" Width="238" Source="Fields.png"/>
-                <Image x:Name="ImgField7" HorizontalAlignment="Left" Height="148" Margin="330,560,0,0" VerticalAlignment="Top" Width="140" Source="Fields.png"/>
-                <Image x:Name="ImgField6" HorizontalAlignment="Left" Height="90" Margin="945,618,0,0" VerticalAlignment="Top" Width="105" Source="Fields.png"/>
-                <Image x:Name="ImgField4" HorizontalAlignment="Left" Height="128" Margin="1042,335,0,0" VerticalAlignment="Top" Width="128" Source="Fields.png"/>
-                <Image x:Name="ImgField3" HorizontalAlignment="Left" Height="155" Margin="945,30,0,0" VerticalAlignment="Top" Width="170" Source="Fields.png" RenderTransformOrigin="1.029,0.452"/>
-                <Image x:Name="ImgField2" HorizontalAlignment="Left" Height="150" Margin="580,90,0,0" VerticalAlignment="Top" Width="133" Source="Fields.png"/>
+
+                <StackPanel x:Name="stackMateriaal" x:Uid="" Margin="0,0,1013,610" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="Images/Fields.png"/>
+                    </StackPanel.Background>
+                    <Grid Height="170">
+                        <Label x:Name="lblMateriaal" Content="Materiaal" HorizontalAlignment="Left" Margin="18,95,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded"/>
+                    </Grid>
+
+
+
+                </StackPanel>
+                <StackPanel x:Name="stackLeeftijd"  Margin="0,0,698,610" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="Images/Fields.png"/>
+                    </StackPanel.Background>
+                    <Grid Height="170">
+                        <Label x:Name="lblLeeftijd" Content="Leeftijd" HorizontalAlignment="Left" Margin="30,95,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded"/>
+                    </Grid>
+
+
+
+                </StackPanel>
+                <StackPanel x:Name="stackThema" Margin="0,0,408,610" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="Images/Fields.png"/>
+                    </StackPanel.Background>
+                    <Grid Height="170">
+                        <Label x:Name="lblThema" Content="Thema" HorizontalAlignment="Left" Margin="41,96,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded" RenderTransformOrigin="0.479,0.773"/>
+                    </Grid>
+
+
+
+                </StackPanel>
+                <StackPanel x:Name="stackTerein" Margin="0,0,83,610" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="Images/Fields.png"/>
+                    </StackPanel.Background>
+                    <Grid Height="170">
+                        <Label x:Name="lblTerein" Content="Terein" HorizontalAlignment="Left" Margin="45,95,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded"/>
+                    </Grid>
+
+
+
+                </StackPanel>
+                <StackPanel x:Name="stackDuur" Margin="0,0,1013,340" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="Images/Fields.png"/>
+                    </StackPanel.Background>
+                    <Grid Height="170">
+                        <Label x:Name="lblDuur" Content="Duur" HorizontalAlignment="Left" Margin="48,85,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded" FontFamily="/Krunsj V1;component/Fonts/#Sweet Creamy"/>
+                    </Grid>
+
+
+
+                </StackPanel>
+                <StackPanel x:Name="stackSoortSpel" Margin="0,0,698,340" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="Images/Fields.png"/>
+                    </StackPanel.Background>
+                    <Grid Height="170">
+                        <Label x:Name="lblSoortSpel" Content="Soort Spel" HorizontalAlignment="Left" Margin="18,85,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded"/>
+                    </Grid>
+
+
+
+                </StackPanel>
+                <StackPanel x:Name="stackVakanties" Margin="0,0,408,340" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="Images/Fields.png"/>
+                    </StackPanel.Background>
+                    <Grid Height="170">
+                        <Label x:Name="lblVakanties" Content="Vakanties" HorizontalAlignment="Left" Margin="18,85,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded"/>
+                    </Grid>
+
+
+
+                </StackPanel>
             </Grid>
         </DockPanel>
 

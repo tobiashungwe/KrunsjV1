@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Krunsj V1\Images\CheckboxUncheched.png = Krunsj V1\Images\CheckboxUncheched.png
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Krunsj_V1.Lib.Framework", "Krunsj_V1.Lib.Framework\Krunsj_V1.Lib.Framework.csproj", "{C30EF4F8-7225-4D08-B839-7417558657CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,10 @@ Global
 		{1CC9DCCA-B8C6-47CB-BCA8-E6634039829D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CC9DCCA-B8C6-47CB-BCA8-E6634039829D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CC9DCCA-B8C6-47CB-BCA8-E6634039829D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C30EF4F8-7225-4D08-B839-7417558657CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C30EF4F8-7225-4D08-B839-7417558657CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C30EF4F8-7225-4D08-B839-7417558657CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C30EF4F8-7225-4D08-B839-7417558657CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
