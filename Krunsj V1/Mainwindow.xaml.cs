@@ -45,8 +45,9 @@ namespace Krunsj_V1
         private int top;
         private string[] categoryNames = { "Materiaal", "Leeftijd", "Thema", "Terein", "Duur", "Soort Spel", "Vakanties" };
         private List<bool> categoryIsChecked = new List<bool>();
-       
-        private List<Category> cookieNames = new List<Category>();
+        private List<object> objectDictionary = new List<object>();
+        private List<Category> categories = new List<Category>();
+        private int counter = 0;
 
 
 
@@ -70,7 +71,7 @@ namespace Krunsj_V1
 
         private void Boot()
         {
-            //Bootsettings
+            #region Visibility settings
             stackMateriaal.Visibility = Visibility.Collapsed;
             stackLeeftijd.Visibility = Visibility.Collapsed;
             stackThema.Visibility = Visibility.Collapsed;
@@ -78,20 +79,100 @@ namespace Krunsj_V1
             stackDuur.Visibility = Visibility.Collapsed;
             stackSoortSpel.Visibility = Visibility.Collapsed;
             stackVakanties.Visibility = Visibility.Collapsed;
+            #endregion
+
 
         }
 
-        private void CategoryReset(CheckBox checkBox)
+        private void IsAllChecked()
         {
-            if (checkBox.IsChecked == false)
+            /*
+            Category category = new Category();
+
+            for (int i = 0; i < categories.Count; i++)
+            {
+                if (categories.Contains(new Category { CatagoryId = i, CategoryName = categoryNames[i], CheckState = true , BinaryCheckState = 1, ObjectName = objectDictionary[i]}))
+                {
+                    int y = 0;
+                    
+                    y++;
+                    
+                    if (y == categories.Count)
+                    {
+                        chkAlleKoekjes.IsChecked = true;
+                    }
+                    else
+                    {
+                        chkAlleKoekjes.IsChecked = false;
+                    }
+
+                    
+
+                }
+                
+                
+                    
+                
+            }
+            
+            if (chkMateriaal.IsChecked == true && chkLeeftijd.IsChecked == true && chkSoortSpel.IsChecked == true && chkterein.IsChecked == true && chkThema.IsChecked == true && chkVakanties.IsChecked == true)
+            {
+                chkAlleKoekjes.IsChecked = true;
+            }
+            else
             {
                 chkAlleKoekjes.IsChecked = false;
-                foreach (CheckBox otherCheckboxes in lstCheckboxItems.Items)
+            }
+            
+*/
+            
+            foreach (CheckBox checkbox in lstCheckboxItems.Items)
+            {
+                foreach (Category category in categories)
                 {
-                    otherCheckboxes.IsChecked = false;
+                    if (category.BinaryCheckState == 1)
+                    {
+                         
+
+                        if (counter == categoryNames.Length)
+                        {
+                            chkAlleKoekjes.SetCurrentValue(CheckBox.IsCheckedProperty, true);
+                        }
+                        
+                    }
+
+                    else
+                    {
+                        if (counter < categoryNames.Length)
+                        {
+                            chkAlleKoekjes.SetCurrentValue(CheckBox.IsCheckedProperty, false);
+                        }
+
+                    }
+                }
+
+            }
+
+
+
+        }
+
+        private int ContainsLoop(List<bool> list, bool value)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i] == value)
+                {
+                    int y = 0;
+                    y++;
+                    return y;
                 }
             }
+            return 0;
         }
+
+
+
 
         private object CreateStackPanel(string nameStackPanel)
         {
@@ -153,10 +234,8 @@ namespace Krunsj_V1
             {
 
                 categoryIsChecked.Add((bool)checkBox.IsChecked);
+
             }
-
-
-
 
         }
 
@@ -164,45 +243,117 @@ namespace Krunsj_V1
 
         private void Execute()
         {
+            EmptyAllUsedLists();
             AddingCategoriesToList();
-            
+            OnCheckedGiveProperties();
 
 
+        }
+
+        private void EmptyAllUsedLists()
+        {
+            categoryIsChecked.Clear();
+            objectDictionary.Clear();
+            categories.Clear();
         }
 
         private void AddingCategoriesToList()
         {
             CheckCheckboxen();
-            Category category = new Category();
             
-            object[] objectDictionary = { stackMateriaal, stackLeeftijd, stackThema, stackTerein, stackDuur, stackSoortSpel, stackVakanties };
+
+            objectDictionary.Add(stackMateriaal);
+            objectDictionary.Add(stackLeeftijd);
+            objectDictionary.Add(stackThema);
+            objectDictionary.Add(stackTerein);
+            objectDictionary.Add(stackDuur);
+            objectDictionary.Add(stackSoortSpel);
+            objectDictionary.Add(stackVakanties);
 
 
-            for (int i = 0; i < categoryNames.Length; i++)
+
+            for (int i = 0; i < lstCheckboxItems.Items.Count ; i++)
             {
 
-                cookieNames.Add(new Category() { CatagoryId = i, CategoryName = categoryNames[i], CheckState = categoryIsChecked[i], BinaryCheckState = Convert.ToInt32(categoryIsChecked[i]), ObjectName = objectDictionary[i] });
-
+                categories.Add(new Category() { CatagoryId = i, CategoryName = categoryNames[i], CheckState = categoryIsChecked[i], BinaryCheckState = Convert.ToInt32(categoryIsChecked[i]), ObjectName = objectDictionary[i] });
+                categories.ToString();
             }
 
-            /*  //Soort van Controle om te kijken welke items er al inzitten
-            foreach (Category catogs in cookieNames)
+            
+        }
+
+        private void CheckAllCheckboxen()
+        {
+            
+            if (chkAlleKoekjes.IsChecked == true)
             {
-                
+                foreach (CheckBox checkBox in lstCheckboxItems.Items)
+                {
+                    checkBox.IsChecked = true;
+                }
             }
-            */
+            else
+            {
+                foreach (CheckBox checkBox in lstCheckboxItems.Items)
+                {
+                    checkBox.IsChecked = false;
+                }
+            }
+            
+                for (int i = 0; i < categories.Count(); i++)
+                {
+                    if (categories.Contains(new Category { BinaryCheckState = 0, CheckState = false }))
+                    {
+                        categories[i] = new Category { CatagoryId = i, CategoryName = categoryNames[i], CheckState = categoryIsChecked[i], BinaryCheckState = Convert.ToInt32(categoryIsChecked[i]), ObjectName = objectDictionary[i] };
 
-            foreach (Category stack in cookieNames)
+                        foreach (CheckBox checkBox in lstCheckboxItems.Items)
+                        {
+                        checkBox.IsChecked = true;
+                        }
+
+                        foreach (Category category in categories)
+                        {
+                        ShowObjects(category.CheckState, category.CatagoryId);
+                        category.ToString();
+                        }
+
+                        chkAlleKoekjes.IsChecked = true;
+                        categories.ToString();
+                    }
+
+                    else
+                    {
+                        categories[i] = new Category { CatagoryId = i, CategoryName = categoryNames[i], CheckState = categoryIsChecked[i], BinaryCheckState = Convert.ToInt32(categoryIsChecked[i]), ObjectName = objectDictionary[i] };
+
+                        foreach (CheckBox checkBox in lstCheckboxItems.Items)
+                        {
+                        checkBox.IsChecked = false;
+                        }
+                        foreach (Category category in categories)
+                        {
+                          ShowObjects(category.CheckState, category.CatagoryId);
+                          category.ToString();
+                        }
+                        chkAlleKoekjes.IsChecked = false;
+                     }
+                }
+           
+            
+            
+        }
+        private void OnCheckedGiveProperties()
+        {
+            foreach (Category category in categories)
             {
 
 
                 //positioning
-                if (stack.BinaryCheckState == 1)
+                if (category.BinaryCheckState == 1)
                 {
 
-                    MessageBox.Show(stack.ToString());
-                    
-                    ShowObjects(stack.CheckState, stack.CatagoryId);
+                    //MessageBox.Show(category.ToString());
+
+                    ShowObjects(category.CheckState, category.CatagoryId);
 
                     Random rnd = new Random();
                     int minTop = 10;
@@ -214,26 +365,23 @@ namespace Krunsj_V1
                     int bottom = maxTop - top;
                     int right = maxLeft - left;
 
-                    stack.Margin = new Thickness(left, top, right, bottom);
+                    //category hier is een instance van de class category en zal niet werken door de naam category te geven
+                    category.Margin = new Thickness(left, top, right, bottom);
 
 
-                } 
-                
+                }
 
-                
-                
                 else
                 {
-                    ShowObjects(stack.CheckState, stack.CatagoryId);
+                    ShowObjects(category.CheckState, category.CatagoryId);
                 }
-                
+
             }
         }
-
         private void ShowObjects(bool isVisible, int id)
         {
             if (isVisible == true)
-            {
+            {             
                 switch (id)
                 {
                     case 0:
@@ -261,61 +409,59 @@ namespace Krunsj_V1
                     default:
                         break;
                 }
-                 
-                
-                
-                
+
+
             }
             else
             {
                 switch (id)
                 {
                     case 0:
-                        stackMateriaal.Visibility = Visibility.Hidden;
+                        stackMateriaal.Visibility = Visibility.Collapsed;
                         break;
                     case 1:
-                        stackLeeftijd.Visibility = Visibility.Hidden;
+                        stackLeeftijd.Visibility = Visibility.Collapsed;
                         break;
                     case 2:
-                        stackThema.Visibility = Visibility.Hidden;
+                        stackThema.Visibility = Visibility.Collapsed;
                         break;
                     case 3:
-                        stackTerein.Visibility = Visibility.Hidden;
+                        stackTerein.Visibility = Visibility.Collapsed;
                         break;
                     case 4:
-                        stackDuur.Visibility = Visibility.Hidden;
+                        stackDuur.Visibility = Visibility.Collapsed;
                         break;
                     case 5:
-                        stackSoortSpel.Visibility = Visibility.Hidden;
+                        stackSoortSpel.Visibility = Visibility.Collapsed;
                         break;
                     case 6:
-                        stackVakanties.Visibility = Visibility.Hidden;
+                        stackVakanties.Visibility = Visibility.Collapsed;
                         break;
 
                     default:
                         break;
                 }
             }
-            
-            
-            
-           
+
+
+
+
         }
 
         #endregion
 
         #region EventHandelers
 
-        
 
 
-        
+
+
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
-            
-         }
+
+
+        }
 
 
 
@@ -324,161 +470,288 @@ namespace Krunsj_V1
         #region Windowbar properties
         //color
         private void BdrMinimize_MouseEnter(object sender, MouseEventArgs e)
-            {
-                BdrMinimize.Background = Brushes.Orchid;
+        {
+            BdrMinimize.Background = Brushes.Orchid;
 
-            }
-
-
-            private void BdrExit_MouseEnter_1(object sender, MouseEventArgs e)
-            {
-                BdrExit.Background = Brushes.Orchid;
-            }
-
-            private void BdrMinimize_MouseLeave(object sender, MouseEventArgs e)
-            {
-                BdrMinimize.Background = Brushes.Transparent;
-            }
+        }
 
 
+        private void BdrExit_MouseEnter_1(object sender, MouseEventArgs e)
+        {
+            BdrExit.Background = Brushes.Orchid;
+        }
 
-            private void BdrExit_MouseLeave_1(object sender, MouseEventArgs e)
-            {
-                BdrExit.Background = Brushes.Transparent;
-            }
+        private void BdrMinimize_MouseLeave(object sender, MouseEventArgs e)
+        {
+            BdrMinimize.Background = Brushes.Transparent;
+        }
+
+
+
+        private void BdrExit_MouseLeave_1(object sender, MouseEventArgs e)
+        {
+            BdrExit.Background = Brushes.Transparent;
+        }
         #endregion
         #region functionality
         //functionality
-            private void lblExit_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        private void lblExit_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+            try
             {
-                try
-                {
-                    System.Windows.Application.Current.Shutdown();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                System.Windows.Application.Current.Shutdown();
             }
-
-            private void BdrExit_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+            catch (Exception ex)
             {
-                try
-                {
-                    System.Windows.Application.Current.Shutdown();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                MessageBox.Show(ex.Message);
             }
+        }
 
-
-
-            private void BdrMinimize_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void BdrExit_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            try
             {
-                try
-                {
-                    this.WindowState = WindowState.Minimized;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                System.Windows.Application.Current.Shutdown();
             }
-
-            private void Krunsj_MouseDown(object sender, MouseButtonEventArgs e)
+            catch (Exception ex)
             {
-                this.DragMove();
-
+                MessageBox.Show(ex.Message);
             }
+        }
 
-            private void Mycanvas_SizeChanged(object sender, SizeChangedEventArgs e)
+
+
+        private void BdrMinimize_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            try
             {
-                myCanvas.Width = e.NewSize.Width;
-                myCanvas.Height = e.NewSize.Height;
-
-
-                double xChange = 1, yChange = 1;
-
-                if (e.PreviousSize.Width != 0)
-                    xChange = (e.NewSize.Width / e.PreviousSize.Width);
-
-                if (e.PreviousSize.Height != 0)
-                    yChange = (e.NewSize.Height / e.PreviousSize.Height);
-
-                ScaleTransform scale = new ScaleTransform(myCanvas.LayoutTransform.Value.M11 * xChange, myCanvas.LayoutTransform.Value.M22 * yChange);
-                myCanvas.LayoutTransform = scale;
-                myCanvas.UpdateLayout();
+                this.WindowState = WindowState.Minimized;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Krunsj_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+
+        }
+
+        private void Mycanvas_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            myCanvas.Width = e.NewSize.Width;
+            myCanvas.Height = e.NewSize.Height;
+
+
+            double xChange = 1, yChange = 1;
+
+            if (e.PreviousSize.Width != 0)
+                xChange = (e.NewSize.Width / e.PreviousSize.Width);
+
+            if (e.PreviousSize.Height != 0)
+                yChange = (e.NewSize.Height / e.PreviousSize.Height);
+
+            ScaleTransform scale = new ScaleTransform(myCanvas.LayoutTransform.Value.M11 * xChange, myCanvas.LayoutTransform.Value.M22 * yChange);
+            myCanvas.LayoutTransform = scale;
+            myCanvas.UpdateLayout();
+        }
         #endregion
 
         #region Categories (eventhandler: click)
-        private void chkAlleKoekjes_Click(object sender, RoutedEventArgs e)
+        
+        private void chkAlleKoekjes_Checked(object sender, RoutedEventArgs e)
         {
-            foreach (CheckBox checkbox in lstCheckboxItems.Items)
+            /*
+            EmptyAllUsedLists();
+            AddingCategoriesToList();
+            CheckAllCheckboxen();
+            OnCheckedGiveProperties();
+            /*
+                for (int i = 0; i < categories.Count(); i++)
+                {
+                    if (categories.Contains(new Category { BinaryCheckState = 0, CheckState = false}))
+                    {
+                        categories[i] = new Category { BinaryCheckState = 1, CheckState = true };
+
+                        foreach (CheckBox checkBox in lstCheckboxItems.Items)
+                        {
+
+                            checkBox.IsChecked = true;
+
+                        }
+                        categories.ToString();
+                    }
+
+                }
+
+
+                EmptyAllUsedLists();
+                AddingCategoriesToList();
+
+                foreach (Category cookie in categories)
+                {
+                    if (cookie.CheckState == false)
+                    {
+                        cookie.CheckState = true;
+
+                        chkMateriaal.IsChecked = cookie.CheckState;
+
+                        cookie.CheckState = false;
+                        foreach (CheckBox check in lstCheckboxItems.Items)
+                        {
+                            if (categoryNames[cookie.CatagoryId] == cookie.CategoryName)
+                            {
+                                check.IsChecked = cookie.CheckState;
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        cookie.CheckState = false;
+                        chkMateriaal.IsChecked = cookie.CheckState;
+
+                        cookie.CheckState = false;
+                        foreach (CheckBox check in lstCheckboxItems.Items)
+                        {
+                            if (categoryNames[cookie.CatagoryId] == cookie.CategoryName)
+                            {
+                                check.IsChecked = cookie.CheckState;
+                            }
+
+                        }
+                    }
+
+                }
+
+                chkMateriaal.IsChecked = true;
+
+                chkLeeftijd.IsChecked = true;
+                chkThema.IsChecked = true;
+                chkterein.IsChecked = true;
+                chkDuur.IsChecked = true;
+                chkSoortSpel.IsChecked = true;
+                chkVakanties.IsChecked = true;
+                */
+        }
+
+        private void chkAlleKoekjes_Unchecked(object sender, RoutedEventArgs e)
+        {
+            /*
+            EmptyAllUsedLists();
+            AddingCategoriesToList();
+            CheckAllCheckboxen();
+            OnCheckedGiveProperties();
+            /*
+            for (int i = 0; i < categories.Count(); i++)
             {
-
-                if (chkAlleKoekjes.IsChecked == true)
+                if (categories.Contains(new Category { BinaryCheckState = 1, CheckState = true }))
                 {
-                    checkbox.IsChecked = true;
-                    
+                    categories[i] = new Category { BinaryCheckState = 0, CheckState = false };
 
-                }
-                else
-                {
-                    checkbox.IsChecked = false;
+                    foreach (CheckBox checkBox in lstCheckboxItems.Items)
+                    {
 
+                        checkBox.IsChecked = false;
+
+                    }
                 }
-                
+
             }
-
+            */
         }
 
-        private void chkMateriaal_Click(object sender, RoutedEventArgs e)
-        {
-            CategoryReset(chkMateriaal);
+        private void chkMateriaal_Checked(object sender, RoutedEventArgs e)
+        {   
             Execute();
+            counter++;
             
-        }
-
-        private void chkLeeftijd_Click(object sender, RoutedEventArgs e)
-        {
-            CategoryReset(chkLeeftijd);
-            Execute();
-            
-            
-        }
-
-        private void chkThema_Click(object sender, RoutedEventArgs e)
-        {
-            CategoryReset(chkThema);
-            Execute();
-        }
-
-        private void chkterein_Click(object sender, RoutedEventArgs e)
-        {
-            CategoryReset(chkterein);
-            Execute();
-        }
-
-        private void chkDuur_Click(object sender, RoutedEventArgs e)
-        {
-            CategoryReset(chkDuur);
-            Execute();
 
         }
 
-        private void chkSoortSpel_Click(object sender, RoutedEventArgs e)
+        private void chkMateriaal_Unchecked(object sender, RoutedEventArgs e)
         {
-            CategoryReset(chkSoortSpel);
             Execute();
+            counter--;
+
+        }
+        private void chkLeeftijd_Checked(object sender, RoutedEventArgs e)
+        {
+            Execute();
+            counter++;
         }
 
-        private void chkVakanties_Click(object sender, RoutedEventArgs e)
+        private void chkLeeftijd_Unchecked(object sender, RoutedEventArgs e)
         {
-            CategoryReset(chkVakanties);
+           Execute();
+            counter--;
+        }
+
+        private void chkThema_Checked(object sender, RoutedEventArgs e)
+        {
             Execute();
+            counter++;
+        }
+
+        private void chkThema_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Execute();
+            counter--;
+        }
+
+        private void chkterein_Checked(object sender, RoutedEventArgs e)
+        {
+            Execute();
+            counter++;
+        }
+
+        private void chkterein_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Execute();
+            counter--;
+        }
+
+        private void chkDuur_Checked(object sender, RoutedEventArgs e)
+        {
+            Execute();
+            counter++;
+
+        }
+
+        private void chkDuur_Unchecked(object sender, RoutedEventArgs e)
+        {
+           Execute();
+            counter--;
+
+        }
+
+        private void chkSoortSpel_Checked(object sender, RoutedEventArgs e)
+        {
+            Execute();
+            counter++;
+
+        }
+
+        private void chkSoortSpel_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Execute();
+            counter--;
+
+        }
+        private void chkVakanties_Checked(object sender, RoutedEventArgs e)
+        {
+            Execute();
+            counter++;
+
+        }
+
+        private void chkVakanties_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Execute();
+            counter--;
+
         }
         #endregion
 
@@ -487,6 +760,8 @@ namespace Krunsj_V1
         private void GrdCentrum_Loaded(object sender, RoutedEventArgs e)
         {
             Boot();
+            AddingCategoriesToList();
+            IsAllChecked();
 
 
         }
@@ -496,8 +771,40 @@ namespace Krunsj_V1
 
         }
 
-       
+        private void lstCheckboxItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void chkAlleKoekjes_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (CheckBox checkbox in lstCheckboxItems.Items)
+            {
+
+                if (chkAlleKoekjes.IsChecked == true)
+                {
+                    checkbox.IsChecked = true;
+
+
+                }
+                else
+                {
+                    checkbox.IsChecked = false;
+                    
+
+                }
+            }
+
+            
+
+        }
+
+        private void Left_DockPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            IsAllChecked();
+        }
     }
+        
 }
 
 
