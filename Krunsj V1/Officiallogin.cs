@@ -19,7 +19,7 @@ namespace Krunsj_V1
         public Officiallogin()
         {
 
-            
+            this.AcceptButton = btnLogin as System.Windows.Forms.IButtonControl;
             InitializeComponent();
 
            
@@ -38,58 +38,27 @@ namespace Krunsj_V1
         }
 
 
-        
 
 
-        private void btnLogin_Click(object sender, EventArgs e)
+
+        private void btnLogin2(object sender, EventArgs e)
         {
-            DB db = new DB();
-
-            String username = txtUsername.Text;
-            String password = txtPassword.Text;
-
-            DataTable table = new DataTable();
-
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-
-            MySqlCommand command = new MySqlCommand("SELECT * FROM `users` WHERE `username` = @usn and `password` = @pass", db.GetConnection());
-
-            command.Parameters.Add("@usn", MySqlDbType.VarChar).Value = username;
-            command.Parameters.Add("@pass", MySqlDbType.VarChar).Value = password;
-
-            adapter.SelectCommand = command;
-
-            adapter.Fill(table);
-            
-
-            // check if there user exists or not 
-            if (table.Rows.Count > 0)
+            Login();
+        }
+        /*
+        private void btnLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
             {
-                Application.Exit();
-                Mainwindow main = new Mainwindow(true);
-                main.Visibility = System.Windows.Visibility.Visible;
-                main.ShowDialog();
-            }
-            else
-            {
-                if(username.Trim().Equals(""))
-                {
-                    MessageBox.Show("Vul je gebruikersnaam in om in te loggen!", "Lege gebruikersnam", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (password.Trim().Equals(""))
-                {
-                    MessageBox.Show("Vul je wachtwoord in om in te loggen!", "Lege wachtwoord", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    MessageBox.Show("Oei, er klopt iets niet!", "Vul gegevens in", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
                 
             }
-            
-        } 
+        }
+        */
+        private void btnLogin_KeyPress(object sender, KeyPressEventArgs e)
+        {
 
-        
+        }
+
 
         private void txtPassword_OnValueChanged(object sender, EventArgs e)
         {
@@ -139,5 +108,54 @@ namespace Krunsj_V1
         {
             bunifuCustomLabel2.ForeColor = Color.Purple;
         }
+
+        private void Login()
+        {
+            DB db = new DB();
+
+            String username = txtUsername.Text;
+            String password = txtPassword.Text;
+
+            DataTable table = new DataTable();
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+
+            MySqlCommand command = new MySqlCommand("SELECT * FROM `users` WHERE `username` = @usn and `password` = @pass", db.GetConnection());
+
+            command.Parameters.Add("@usn", MySqlDbType.VarChar).Value = username;
+            command.Parameters.Add("@pass", MySqlDbType.VarChar).Value = password;
+
+            adapter.SelectCommand = command;
+
+            adapter.Fill(table);
+
+
+            // check if there user exists or not 
+            if (table.Rows.Count > 0)
+            {
+                Application.Exit();
+                Mainwindow main = new Mainwindow(true);
+                main.Visibility = System.Windows.Visibility.Visible;
+                main.ShowDialog();
+            }
+            else
+            {
+                if (username.Trim().Equals(""))
+                {
+                    MessageBox.Show("Vul je gebruikersnaam in om in te loggen!", "Lege gebruikersnam", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (password.Trim().Equals(""))
+                {
+                    MessageBox.Show("Vul je wachtwoord in om in te loggen!", "Lege wachtwoord", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Oei, er klopt iets niet!", "Vul gegevens in", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+        }
+
+        
     }
 }

@@ -1,6 +1,6 @@
 C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj_V1.Lib.Framework\bin\Debug\Krunsj_V1.Lib.Framework.dll
 C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj_V1.Lib.Framework\bin\Debug\Krunsj_V1.Lib.Framework.pdb
-C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj_V1.Lib.Framework\obj\Debug\Krunsj_V1.Lib.Framework.csprojAssemblyReference.cache
 C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj_V1.Lib.Framework\obj\Debug\Krunsj_V1.Lib.Framework.csproj.CoreCompileInputs.cache
 C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj_V1.Lib.Framework\obj\Debug\Krunsj_V1.Lib.Framework.dll
 C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj_V1.Lib.Framework\obj\Debug\Krunsj_V1.Lib.Framework.pdb
+C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj_V1.Lib.Framework\obj\Debug\Krunsj_V1.Lib.Framework.csprojAssemblyReference.cache

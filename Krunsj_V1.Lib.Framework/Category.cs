@@ -1,24 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Krunsj_V1.Lib.Framework
 {
-    public class Category 
+    public class Category
     {
-        //Fields
+
+
+        #region Fields,Types
+        public enum category { Materiaal, Leeftijd, Thema, Terein, Duur, SoortSpel, Vakanties };
+
+
+        #endregion
+
+
+
+
+
+
+        #region Properties
+
+
+
         private string categoryName;
-        private bool checkState;
-        private int binaryCheckState;
-        private int catagoryID;
-        private object objectName;
 
-        //Properties
-
-        public  Thickness Margin { get; set; }
 
         public string CategoryName
         {
@@ -26,11 +37,26 @@ namespace Krunsj_V1.Lib.Framework
             set { categoryName = value; }
         }
 
+        private int totalCategories;
+
+        public int TotalCategories
+        {
+            get
+            {
+                return totalCategories = Enum.GetNames(typeof(category)).Length;
+            }
+
+        }
+
+        private bool checkState;
+
         public bool CheckState
         {
             get { return checkState; }
             set { checkState = value; }
         }
+
+        private int binaryCheckState;
 
         public int BinaryCheckState
         {
@@ -38,7 +64,7 @@ namespace Krunsj_V1.Lib.Framework
             set { binaryCheckState = value; }
         }
 
-        
+        private int catagoryID;
 
         public int CatagoryId
         {
@@ -46,34 +72,63 @@ namespace Krunsj_V1.Lib.Framework
             set { catagoryID = value; }
         }
 
-        
+        private StackPanel cookieName;
 
-        public object ObjectName
+        public StackPanel CookieName
         {
-            get { return objectName; }
-            set { objectName = value; }
+            get { return cookieName; }
+            set { cookieName = value; }
         }
 
 
-        private object[] cookies = new object[7];
+        private List<StackPanel> cookies = new List<StackPanel>();
 
+        public List<StackPanel> Cookies
+        {
+            get { return cookies; }
+            set { cookies = value; }
+        }
+
+
+        #region Constructor(s)
+
+        public Category()
+        {
+        }
+        public Category(int catagoryId , bool checkState , int binaryCheckState , StackPanel cookieName)
+        {
+            this.catagoryID = catagoryId;
+            this.categoryName = GetCategory(catagoryId);
+            this.checkState = checkState;
+            this.binaryCheckState = binaryCheckState;
+            this.cookieName = cookieName;
+        }
+
+
+
+
+        #endregion
+
+
+        //public  Thickness Margin { get; set; }
+
+        #endregion
+
+        #region ClassMethods
         public override string ToString()
         {
-            return $"Category Name: {CategoryName} CheckState: {CheckState} BinaryCheckState: {BinaryCheckState} Object Name: {ObjectName}";
+            return $"CategoryId: {this.catagoryID} Category Name: {this.categoryName} CheckState: {this.checkState} BinaryCheckState: {this.binaryCheckState} ObjectName: {this.cookieName}";
         }
 
-
-
-       
-        /*
-        public void AddCategory()
+        public string GetCategory(int index)
         {
-            foreach (string category in CategoryNames)
-            {
-                cookieNames.Add(CategoryName = category);
-            }
-
+            string[] categoryNames = Enum.GetNames(typeof(Category.category));
+            string categoryName = categoryNames[index];
+            return categoryName;
         }
-        */
+        
+
+        #endregion
+
     }
 }
