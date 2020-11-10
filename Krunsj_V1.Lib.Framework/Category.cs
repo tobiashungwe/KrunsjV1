@@ -14,7 +14,7 @@ namespace Krunsj_V1.Lib.Framework
 
 
         #region Fields,Types
-        public enum category { Materiaal, Leeftijd, Thema, Terein, Duur, SoortSpel, Vakanties };
+        public enum category { Materiaal, Leeftijd, Thema, Terein, Duur, SoortSpel, Vakanties, Varia };
 
 
         #endregion

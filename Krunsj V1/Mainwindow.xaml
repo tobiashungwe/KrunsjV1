@@ -200,15 +200,16 @@
         <DockPanel x:Name="Left_DockPanel" LastChildFill="False" Grid.IsSharedSizeScope="True" Background="#FF7E116B" MouseMove="Left_DockPanel_MouseMove">
             <Grid x:Name="Grdinhoud" VerticalAlignment="Top" Width="362">
                 <Grid x:Name="GrdinGrid" Height="804" VerticalAlignment="Top" Margin="0,96,0,0">
-                    <CheckBox MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkAlleKoekjes" Content=" Alle koekjes" VerticalAlignment="Top" Margin="155,35,26,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Foreground="White" Click="chkAlleKoekjes_Click"/>
-                    <ListBox  x:Name="lstCheckboxItems" ItemContainerStyle="{StaticResource ListBoxItemStyleTransparentSelect}"  Margin="0,134,0,-45" HorizontalAlignment="Right" Width="362" Background="{x:Null}" BorderBrush="{x:Null}"  >
-                        <CheckBox MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkMateriaal" Content="Materiaal" FontSize="24"  Foreground="White" Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="0"  Checked="chkCheckbox_Checked" Unchecked="chkCheckbox_Unchecked" />
-                        <CheckBox MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkLeeftijd" Content="Leeftijd" FontSize="24"     Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Width="130" Checked="chkCheckbox_Checked" Unchecked="chkCheckbox_Unchecked"/>
-                        <CheckBox MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkThema" Content="Thema" FontSize="24"           Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkCheckbox_Checked" Unchecked="chkCheckbox_Unchecked" />
-                        <CheckBox MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkterein" Content="Terein" FontSize="24"         Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Checked="chkCheckbox_Checked" Unchecked="chkCheckbox_Unchecked" />
-                        <CheckBox MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkDuur" Content="Duur" FontSize="24"             Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkCheckbox_Checked" Unchecked="chkCheckbox_Unchecked"/>
-                        <CheckBox MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkSoortSpel" Content="Soort spel" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Checked="chkCheckbox_Checked" Unchecked="chkCheckbox_Unchecked" />
-                        <CheckBox MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkVakanties"  Content="Vakanties" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkCheckbox_Checked" Unchecked="chkCheckbox_Unchecked" />
+                    <CheckBox MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkAlleKoekjes" Content=" Alle koekjes" VerticalAlignment="Top" Margin="155,35,26,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Foreground="White" Click="chkAlleKoekjes_Click" Cursor="Hand"/>
+                    <ListBox ItemContainerStyle="{StaticResource ListBoxItemStyleTransparentSelect}" x:Name="lstCheckboxItems"   Margin="0,134,0,-95" HorizontalAlignment="Right" Width="362" Background="{x:Null}" BorderBrush="{x:Null}"  >
+                        <CheckBox MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkMateriaal" Content="Materiaal" FontSize="24"  Foreground="White" Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="0"  Checked="chkCheckbox_Checked" Unchecked="chkCheckbox_Unchecked" Cursor="Hand" />
+                        <CheckBox MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkLeeftijd" Content="Leeftijd" FontSize="24"     Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Width="130" Checked="chkCheckbox_Checked" Unchecked="chkCheckbox_Unchecked" Cursor="Hand"/>
+                        <CheckBox MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkThema" Content="Thema" FontSize="24"           Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkCheckbox_Checked" Unchecked="chkCheckbox_Unchecked" Cursor="Hand" />
+                        <CheckBox MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkterein" Content="Terein" FontSize="24"         Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Checked="chkCheckbox_Checked" Unchecked="chkCheckbox_Unchecked" Cursor="Hand" />
+                        <CheckBox MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkDuur" Content="Duur" FontSize="24"             Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkCheckbox_Checked" Unchecked="chkCheckbox_Unchecked" Cursor="Hand"/>
+                        <CheckBox MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkSoortSpel" Content="Soort spel" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Checked="chkCheckbox_Checked" Unchecked="chkCheckbox_Unchecked" Cursor="Hand" />
+                        <CheckBox MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkVakanties"  Content="Vakanties" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkCheckbox_Checked" Unchecked="chkCheckbox_Unchecked" Margin="0" Cursor="Hand" />
+                        <CheckBox MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkVaria"  Content="Varia" FontSize="24"          Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkCheckbox_Checked" Unchecked="chkCheckbox_Unchecked" Margin="180 45" RenderTransformOrigin="1.983,0.968" Cursor="Hand" />
                     </ListBox>
 
                 </Grid>
@@ -227,21 +228,25 @@
                 </Grid.Background>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition Height="7*" />
-                    <RowDefinition Height="7*" />
+                    <RowDefinition Height="12*" />
+                    <RowDefinition Height="42*" />
+                    <RowDefinition Height="42*"/>
+                    <RowDefinition Height="42*" />
+                    <RowDefinition Height="42*"/>
 
 
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="203*" />
+                    <ColumnDefinition Width="203*"/>
+                    <ColumnDefinition Width="203*" />
+                    <ColumnDefinition Width="203*" />
+                    <ColumnDefinition Width="200*"/>
+                    <ColumnDefinition Width="200*" />
 
                 </Grid.ColumnDefinitions>
 
-                <Canvas x:Name="cvsToolbar" Height="62" Margin="0,0,2,418" VerticalAlignment="Bottom" SizeChanged="cvsToolbar_SizeChanged" Grid.IsSharedSizeScope="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="2" >
+                <Canvas x:Name="cvsToolbar" Height="60" VerticalAlignment="Bottom" SizeChanged="cvsToolbar_SizeChanged" Grid.IsSharedSizeScope="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Left" Width="1237" >
                     <Border x:Name="BdrMinimize" BorderThickness="1" HorizontalAlignment="Stretch" Height="67" VerticalAlignment="Bottom" Width="60" MouseEnter="BdrMinimize_MouseEnter" MouseLeave="BdrMinimize_MouseLeave" MouseLeftButtonDown="BdrMinimize_MouseLeftButtonDown" Canvas.Left="1103" Canvas.Top="-5">
                         <Label x:Name="lblMinimize" Content="-" Cursor="Hand" FontSize="72" Margin="9,-24,14,0" RenderTransformOrigin="0.875,-0.4" HorizontalAlignment="Stretch" Height="80" VerticalAlignment="Top"/>
                     </Border>
@@ -250,7 +255,7 @@
                     </Border>
                 </Canvas>
 
-                <StackPanel x:Uid="0" x:Name="stackMateriaal"  Width="170" Grid.Row="1" Grid.Column="0" Margin="0,0,90,104" Height="170" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                <StackPanel x:Uid="0" x:Name="stackMateriaal"  Width="170" Grid.Row="4" Grid.Column="3" Margin="0,0,27,20" Height="170" VerticalAlignment="Bottom" HorizontalAlignment="Right">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="Images/Fields.png"/>
                     </StackPanel.Background>
@@ -259,7 +264,7 @@
                     </Grid>
                 </StackPanel>
 
-                <StackPanel x:Uid="1" x:Name="stackLeeftijd"  Width="170" Grid.Row="1" Grid.Column="1" Margin="0,0,89,105" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom" >
+                <StackPanel x:Uid="1" x:Name="stackLeeftijd"  Width="170" Grid.Column="3" Margin="0,0,27,10" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom" Grid.Row="1" >
                     <StackPanel.Background>
                         <ImageBrush ImageSource="Images/Fields.png"/>
                     </StackPanel.Background>
@@ -268,7 +273,7 @@
                     </Grid>
                 </StackPanel>
 
-                <StackPanel x:Uid="2" x:Name="stackThema" Width="170" Grid.Row="1" Grid.Column="2" Margin="0,0,89,105" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom">
+                <StackPanel x:Uid="2" x:Name="stackThema" Width="170" Grid.Row="2" Grid.Column="4" Margin="0,0,10,20" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="Images/Fields.png"/>
                     </StackPanel.Background>
@@ -279,7 +284,7 @@
 
 
                 </StackPanel>
-                <StackPanel x:Uid="3" x:Name="stackTerein" Width="170" Grid.Row="1" Grid.Column="3" Margin="0,0,89,105" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom">
+                <StackPanel x:Uid="3" x:Name="stackTerein" Width="170" Grid.Row="3" Grid.Column="4" Margin="0,0,10,20" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="Images/Fields.png"/>
                     </StackPanel.Background>
@@ -290,7 +295,7 @@
 
 
                 </StackPanel>
-                <StackPanel x:Uid="4" x:Name="stackDuur" Width="170" Grid.Row="2" Grid.Column="0" Margin="0,0,90,105" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom">
+                <StackPanel x:Uid="4" x:Name="stackDuur" Width="170" Grid.Row="3" Grid.Column="1" Margin="0,0,10,10" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="Images/Fields.png"/>
                     </StackPanel.Background>
@@ -301,7 +306,7 @@
 
 
                 </StackPanel>
-                <StackPanel x:Uid="5" x:Name="stackSoortSpel" Width="170" Grid.Row="2" Grid.Column="1" Margin="0,0,89,105" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom">
+                <StackPanel x:Uid="5" x:Name="stackSoortSpel" Width="170" Grid.Row="2" Margin="0,0,27,20" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom" Grid.Column="1">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="Images/Fields.png"/>
                     </StackPanel.Background>
@@ -312,7 +317,7 @@
 
 
                 </StackPanel>
-                <StackPanel x:Uid="6" x:Name="stackVakanties" Width="170" Grid.Row="2" Grid.Column="2" Margin="0,0,89,105" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom">
+                <StackPanel x:Uid="6" x:Name="stackVakanties" Width="170" Grid.Row="4" Grid.Column="2" Margin="0,0,27,20" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="Images/Fields.png"/>
                     </StackPanel.Background>
@@ -321,16 +326,27 @@
                     </Grid>
                 </StackPanel>
 
-                <StackPanel x:Uid="7" x:Name="stackCustom" Width="170" Grid.Row="2" Grid.Column="3" Margin="0,0,89,105" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom">
+
+
+
+                <StackPanel x:Uid="7" x:Name="stackVaria" Width="170" Grid.Row="1" Margin="0,0,27,10" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom" Grid.Column="2">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="Images/Fields.png"/>
                     </StackPanel.Background>
                     <Grid Height="170">
-                        <Label x:Name="lblCustom" Content="Selectie" HorizontalAlignment="Left" Margin="29,91,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" />
+                        <Label x:Name="lblVaria" Content="Varia" HorizontalAlignment="Left" Margin="40,96,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" />
                     </Grid>
+
                 </StackPanel>
 
-
+                <StackPanel x:Uid="8" x:Name="stackCustom" Width="245" Grid.Row="2" Grid.Column="2" Margin="0,0,79,100" HorizontalAlignment="Right" Height="226" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="Selection.png" Stretch="Uniform"/>
+                    </StackPanel.Background>
+                    <Grid Height="170">
+                        <Label x:Name="lblCustom" Content="Selectie" HorizontalAlignment="Left" Margin="40,106,0,-16" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Height="80" Width="170" />
+                    </Grid>
+                </StackPanel>
 
 
             </Grid>

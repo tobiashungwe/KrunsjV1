@@ -45,9 +45,9 @@ namespace Krunsj_V1
         private string[] categoryNames = { "Materiaal", "Leeftijd", "Thema", "Terein", "Duur", "Soort Spel", "Vakanties" };
         private List<bool> categoryIsChecked = new List<bool>();
         private const int minBottom = 10;
-        private const int maxBottom = 240;
+        private const int maxBottom = 45;
         private const int minRight = 10;
-        private const int maxRight = 130;
+        private const int maxRight = 27;
         private List<StackPanel> Cookies = new List<StackPanel>();
         private List<Category> categories = new List<Category>();
         private Dictionary<int, int> rndPositions = new Dictionary<int, int>();
@@ -84,6 +84,8 @@ namespace Krunsj_V1
             stackSoortSpel.Visibility = Visibility.Collapsed;
             stackVakanties.Visibility = Visibility.Collapsed;
             stackCustom.Visibility = Visibility.Collapsed;
+            stackVaria.Visibility = Visibility.Collapsed;
+
             #endregion
 
 
@@ -227,6 +229,7 @@ namespace Krunsj_V1
             Cookies.Add(stackDuur);
             Cookies.Add(stackSoortSpel);
             Cookies.Add(stackVakanties);
+            Cookies.Add(stackVaria);
 
 
 
@@ -262,7 +265,7 @@ namespace Krunsj_V1
                 {
 
                     //MessageBox.Show(category.ToString());
-                    AddRandomMargin(minBottom, maxBottom, minRight, maxRight);
+                    //AddRandomMargin(minBottom, maxBottom, minRight, maxRight);
 
                     ShowObjects(category.CheckState, category.CatagoryId);
                     //
@@ -335,9 +338,9 @@ namespace Krunsj_V1
                         break;
                     case 6:
                         stackVakanties.Visibility = Visibility.Visible;
-                        
-                        
-
+                        break;
+                    case 7:
+                        stackVaria.Visibility = Visibility.Visible;
                         break;
 
                     default:
@@ -390,9 +393,9 @@ namespace Krunsj_V1
                         break;
                     case 6:
                         stackVakanties.Visibility = Visibility.Collapsed;
-
-                        
-
+                        break;
+                    case 7:
+                        stackVaria.Visibility = Visibility.Collapsed;
                         break;
 
                     default:
@@ -417,8 +420,8 @@ namespace Krunsj_V1
         private (int, int) CreateCombination(int xMAxValue = 1, int yMAxValue = 1)
         {   //Creating random position 
             Random rnd = new Random();
-            int x = rnd.Next(0, 4);
-            int y = rnd.Next(1, 3);
+            int x = rnd.Next(1, 5);
+            int y = rnd.Next(1, 5);
             
 
             if (xMAxValue > 1 && yMAxValue > 1)
@@ -434,9 +437,23 @@ namespace Krunsj_V1
             if (itemsChecked == 0)
             {
                 var rndPositions = new List<(int x, int y)>();
-                            
-                                int index = 0;
-                                while (index < lstCheckboxItems.Items.Count + 1)
+                var bannedPositions = new List<(int x, int y)>
+                {
+                    (1,1),
+                    (1,4),
+                    (4,1),
+                    (4,4),
+                    (2,2),
+                    (2,3),
+                    (3,2),
+                    (3,3)
+
+                };
+                
+                
+
+                                 int index = 0;
+                                while (index < lstCheckboxItems.Items.Count)
                                 {
                                     
                                     foreach (UIElement uIElement in GrdCentrum.Children)
@@ -444,8 +461,9 @@ namespace Krunsj_V1
                                         
                   
                                         string elementName = uIElement.ToString();
+                                            //Controls die ik niet wil random positie geven kan ik hier aanpassen
 
-                                        if (elementName != "System.Windows.Controls.Canvas")
+                                        if (elementName != "System.Windows.Controls.Canvas" && uIElement.Uid != "8" )
                                         {
 
                                             
@@ -456,18 +474,24 @@ namespace Krunsj_V1
                                                 //Creating new positions
                                                 if (!rndPositions.Contains(randomPosition))
                                                 {
+                                                    if (!bannedPositions.Contains(randomPosition))
+                                                    {
                                                         rndPositions.Add(randomPosition);
                                         
-                                                        if (rndPositions.Count == lstCheckboxItems.Items.Count + 1)
+                                                        if (rndPositions.Count == lstCheckboxItems.Items.Count)
                                                         {
 
-                                                            index = lstCheckboxItems.Items.Count + 1;
+                                                            index = lstCheckboxItems.Items.Count;
                                                         }
                                                         else
                                                         {
                                                             continue;
                                                         }
-                                                    
+                                                    }
+                                                    else
+                                                    {
+                                                        continue;
+                                                    }
                                                 }
                                                 else
                                                 {
@@ -486,7 +510,7 @@ namespace Krunsj_V1
                                  foreach (UIElement uIElement in GrdCentrum.Children)
                                  {
                                     string elementName = uIElement.ToString();
-                                    if (elementName != "System.Windows.Controls.Canvas")
+                                    if (elementName != "System.Windows.Controls.Canvas" && uIElement.Uid != "8")
                                      {
                                          int id = Convert.ToInt32(uIElement.Uid);
                                          Grid.SetRow(uIElement, rndPositions[id].y);
