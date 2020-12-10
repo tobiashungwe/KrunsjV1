@@ -13,8 +13,18 @@ namespace Krunsj_V1.Lib.Framework
     {
 
 
-        #region Fields,Types
-        public enum category { Materiaal, Leeftijd, Thema, Terein, Duur, SoortSpel, Vakanties, Varia };
+            #region Fields,Types
+        public enum category
+        {
+            Materiaal,
+            Leeftijd,
+            Thema,
+            Terein,
+            Duur,
+            SoortSpel,
+            Vakanties,
+            Intensiteit 
+        };
 
 
         #endregion
@@ -24,7 +34,7 @@ namespace Krunsj_V1.Lib.Framework
 
 
 
-        #region Properties
+         #region Properties
 
 
 
@@ -89,13 +99,21 @@ namespace Krunsj_V1.Lib.Framework
             set { cookies = value; }
         }
 
+        private List<Subcatagory> subcatagories = new List<Subcatagory>();
+
+        public List<Subcatagory> Subcatagories
+        {
+            get { return subcatagories; }
+            set { subcatagories = value; }
+        }
+
 
         #region Constructor(s)
 
         public Category()
         {
         }
-        public Category(int catagoryId , bool checkState , int binaryCheckState , StackPanel cookieName)
+        public Category(int catagoryId , bool checkState , int binaryCheckState , StackPanel cookieName/*, List<Subcatagory>*/)
         {
             this.catagoryID = catagoryId;
             this.categoryName = GetCategory(catagoryId);

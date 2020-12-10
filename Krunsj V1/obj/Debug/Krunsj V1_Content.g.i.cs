@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("fields.svg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("btnhome.png")]
 
 
