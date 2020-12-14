@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -36,6 +37,7 @@ namespace Krunsj_V1
 
 
         private List<bool> categoryIsChecked = new List<bool>();
+        private List<bool> subcategoryIsChecked = new List<bool>();
         private const int minBottom = 10;
         private const int maxBottom = 45;
         private const int minRight = 10;
@@ -43,9 +45,13 @@ namespace Krunsj_V1
         private List<StackPanel> Cookies = new List<StackPanel>();
         private List<Category> categories = new List<Category>();
         private Dictionary<int, int> rndPositions = new Dictionary<int, int>();
-        private int itemsChecked = 0;
+        private int categoriesChecked = 0;
+        private int subcategoriesChecked = 0;
+        private int counter = 0;
         private bool stackpanelIsClicked = false;
         private bool stackpanelIsSelected = false;
+        private bool isValid = false;
+        private bool isCloseLoop = false;
         private string stackpanelName_Clicked;
         
 
@@ -100,7 +106,7 @@ namespace Krunsj_V1
         }
 
 
-        private void IsAllChecked()
+        private void IsAllChecked(int inputCategoriesChecked)
         {
 
 
@@ -112,7 +118,7 @@ namespace Krunsj_V1
                     {
 
 
-                        if (itemsChecked == Enum.GetNames(typeof(Category.category)).Length)
+                        if (inputCategoriesChecked == Enum.GetNames(typeof(Category.category)).Length)
                         {
                             chkAlleKoekjes.SetCurrentValue(CheckBox.IsCheckedProperty, true);
 
@@ -122,7 +128,7 @@ namespace Krunsj_V1
 
                     else
                     {
-                        if (itemsChecked < Enum.GetNames(typeof(Category.category)).Length)
+                        if (inputCategoriesChecked < Enum.GetNames(typeof(Category.category)).Length)
                         {
                             chkAlleKoekjes.SetCurrentValue(CheckBox.IsCheckedProperty, false);
                         }
@@ -191,14 +197,21 @@ namespace Krunsj_V1
             return myStackPanel;
 
         }
-        public void CheckCheckboxen()
+        public void CheckCheckboxen(List<bool> inputList)
         {
 
 
             foreach (CheckBox checkBox in lstCheckboxItems.Items)
             {
-
-                categoryIsChecked.Add((bool)checkBox.IsChecked);
+                if (checkBox.Visibility == Visibility.Visible)
+                {
+                    inputList.Add((bool)checkBox.IsChecked);
+                }
+                else
+                {
+                    continue;
+                }
+                
 
             }
 
@@ -220,6 +233,7 @@ namespace Krunsj_V1
         private void EmptyAllUsedLists()
         {
             categoryIsChecked.Clear();
+            subcategoryIsChecked.Clear();
             foreach (Category category in categories)
             {
                 category.Subcatagories.Clear();
@@ -232,7 +246,7 @@ namespace Krunsj_V1
 
         private void AddingCategoriesToList()
         {
-            CheckCheckboxen();
+            CheckCheckboxen(categoryIsChecked);
 
 
             Cookies.Add(stackMateriaal);
@@ -305,7 +319,7 @@ namespace Krunsj_V1
 
 
 
-                if (categoryIsChecked[i] == false && itemsChecked == 0)
+                if (categoryIsChecked[i] == false && categoriesChecked == 0)
                 {
                     stackCustom.Visibility = Visibility.Collapsed;
                 }
@@ -448,7 +462,7 @@ namespace Krunsj_V1
 
         private void GiveCategoryRandomPosition()
         {
-            if (itemsChecked == 0)
+            if (categoriesChecked == 0)
             {
                 var rndPositions = new List<(int x, int y)>();
                 var bannedPositions = new List<(int x, int y)>
@@ -892,8 +906,46 @@ namespace Krunsj_V1
             
         }
 
+        private static String convert(String str)
+        {
 
-    
+            // Create a char array of
+            // given String
+            char[] ch = str.ToCharArray();
+
+            for (int i = 0; i < str.Length; i++)
+            {
+
+                // If first character of a
+                // word is found
+                if (i == 0 && ch[i] != ' ' ||
+                    ch[i] != ' ' && ch[i - 1] == ' ')
+                {
+
+                    // If it is in lower-case
+                    if (ch[i] >= 'a' && ch[i] <= 'z')
+                    {
+
+                        // Convert into Upper-case
+                        ch[i] = (char)(ch[i] - 'a' + 'A');
+                    }
+                }
+
+                // If apart from first character
+                // Any one is in Upper-case
+                else if (ch[i] >= 'A' && ch[i] <= 'Z')
+
+                    // Convert into Lower-Case
+                    ch[i] = (char)(ch[i] + 'a' - 'A');
+            }
+
+            // Convert the char array to
+            // equivalent String
+            String st = new String(ch);
+
+            return st;
+        }
+
         #endregion
 
         #region EventHandelers
@@ -903,33 +955,298 @@ namespace Krunsj_V1
 
         private void Left_DockPanel_MouseMove(object sender, MouseEventArgs e)
         {
-            IsAllChecked();
+            //IsAllChecked(categoriesChecked);
 
 
         }
-        private void lstCheckboxItems_UpdateGui(object sender, MouseEventArgs e)
+       
+        private void GrdCentrum_Loaded(object sender, RoutedEventArgs e)
         {
-            
-            IsAllChecked();
+            Boot();
+            AddingCategoriesToList();
+            IsAllChecked(categoriesChecked);
 
+        }
+        private void Krunsj_UpdateGui_MouseMove(object sender, MouseEventArgs e)
+        {
+
+            ShowBtnHome();
+            ShowChkAlleKoekjes();
+            
+
+        } 
+        private void StuffIDoNotWantToDelete()
+        {
+            /*
+            bool isActivated = false;
+
+            while (isCloseLoop == false)
+            {
+                foreach (Category category in categories)
+                {
+
+                    List<int> saveCounter = new List<int>();
+                    saveCounter.Add(counter);
+
+                    if (category.CheckState == true)
+                    {
+
+                        while (isActivated == false)
+                        {
+                            if (category.CheckState == true)
+                            {
+                                IsAllChecked(categoriesChecked);
+                                foreach (Subcatagory subcatagory in category.Subcatagories)
+                                {
+                                    if (checkBoxName == subcatagory.SubcatagoryName)
+                                    {
+                                        IsAllChecked(subcategoriesChecked);
+                                        if (subcategoriesChecked == lstCheckboxItems.Items.Count)
+                                        {
+
+                                            isActivated = true;
+                                            counter++;
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        if (subcategoriesChecked == lstCheckboxItems.Items.Count)
+                                        {
+                                            isActivated = true;
+                                            counter++;
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                isActivated = true;
+                                counter++;
+                                continue;
+                            }
+
+                            var index = categories.Where(c => c.CheckState == category.CheckState);
+
+                            Console.WriteLine(index);
+                        }
+                    }
+                    else
+                    {
+
+                        if (8 == categories.Count)
+                        {
+                            isCloseLoop = true;
+                            continue;
+                        }
+                        else
+                        {
+                            counter++;
+                            continue;
+                        }
+
+
+                    }
+
+
+                }
+            }
+
+            break;
+            */
+        }
+
+        private void ShowBtnHome()
+        {
             for (int i = 0; i < categoryIsChecked.Count; i++)
             {
 
 
 
-                if (categoryIsChecked[i] == false && itemsChecked == 0)
+                if (categoryIsChecked[i] == false && categoriesChecked == 0)
                 {
                     stackCustom.Visibility = Visibility.Collapsed;
+                }
+                foreach (Category.category categoryName in (Category.category[])Enum.GetValues(typeof(Category.category)))
+                {
+                    isCloseLoop = false;
+
+                    foreach (CheckBox checkBox in lstCheckboxItems.Items)
+                    {
+                        string checkBoxName = checkBox.Content.ToString();
+                        checkBoxName = convert(checkBoxName);
+                        checkBoxName = Regex.Replace(checkBoxName, @"\s+", "");
+
+                        if (lstCheckboxItems.Items.Contains(categoryName.ToString()))
+                        {
+                            if (checkBoxName == categoryName.ToString())
+                            {
+                                btnHome.Visibility = Visibility.Collapsed;
+                            }
+                            else
+                            {
+
+                                btnHome.Visibility = Visibility.Visible;
+                            }
+                        }
+
+                        else
+                        {
+                            continue;
+
+
+                        }
+
+
+
+
+
+                    }
+
+
+
                 }
 
             }
         }
-        private void GrdCentrum_Loaded(object sender, RoutedEventArgs e)
+        private void ShowChkAlleKoekjes()
         {
-            Boot();
-            AddingCategoriesToList();
-            IsAllChecked();
+            foreach (Category category in categories)
+            {
+                //Hier kan ik eventueel werken met een while
+                
+                foreach (CheckBox checkbox in lstCheckboxItems.Items)
+                {
+                    
+                    string checkboxName = checkbox.Content.ToString();
+                    checkboxName = convert(checkboxName);
+                    checkboxName = Regex.Replace(checkboxName, @"\s+", "");
+                    
+                    if (category.CategoryName == checkboxName)
+                    {
+                        if (category.CheckState == true)
+                        {
+                            if (categoriesChecked == lstCheckboxItems.Items.Count)
+                            {
+                                chkAlleKoekjes.SetCurrentValue(CheckBox.IsCheckedProperty, true);
+                            }
+                            else
+                            {
+                                continue;
+                            }
+                        }
+                        else
+                        {
+                            if (categoriesChecked == 0)
+                            {
+                                chkAlleKoekjes.SetCurrentValue(CheckBox.IsCheckedProperty, false);
+                            }
+                            else if (categoriesChecked < lstCheckboxItems.Items.Count)
+                            {
+                                chkAlleKoekjes.SetCurrentValue(CheckBox.IsCheckedProperty, false);
+                            }
+                            else
+                            {
+                                continue;
+                            }
+                        }
+                    }
+                    if (category.CheckState == true)
+                    {
+                        if (category.Subcatagories.Count != 0)
+                        {
 
+
+                            foreach (var item in category.Subcatagories.Select((value, i) => (value, i)))
+                            {
+                                int index = item.i;
+                                List<int> storedNumbers = new List<int>();
+                                storedNumbers.Add(index);
+                                string convertedSubcatagoryName = convert(item.value.SubcatagoryName);
+                                convertedSubcatagoryName = Regex.Replace(convertedSubcatagoryName, @"\s+", "");
+                                if (convertedSubcatagoryName == checkboxName)
+                                {
+                                    
+
+                                    if (checkbox.IsChecked == true)
+                                    {
+                                        if (!subcategoryIsChecked.Contains(false))
+                                        {
+                                            
+                                            if (subcategoriesChecked == subcategoryIsChecked.Select((value, y) => value ? y : -1).Where(o => o >= 0).ToList().Count || subcategoriesChecked >= subcategoryIsChecked.Select((value, y) => value ? y : -1).Where(o => o >= 0).ToList().Count - 1)
+                                            {
+                                                chkAlleKoekjes.SetCurrentValue(CheckBox.IsCheckedProperty, true);
+                                                
+                                            }
+                                            else
+                                            {
+                                                continue;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chkAlleKoekjes.SetCurrentValue(CheckBox.IsCheckedProperty, false);
+                                            break;
+                                        }
+                                        
+                                        
+                                        
+
+                                    }
+                                    else
+                                    {
+                                      
+                                        
+                                        if (subcategoriesChecked <= lstCheckboxItems.Items.Count)
+                                        {
+                                            chkAlleKoekjes.SetCurrentValue(CheckBox.IsCheckedProperty, false);
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                            }
+                            
+
+
+                            
+                           
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    
+                    
+
+                    
+
+                    
+                   
+
+                }
+               
+            }
         }
         #endregion
         //window bar
@@ -1028,30 +1345,133 @@ namespace Krunsj_V1
 
         private void chkAlleKoekjes_Click(object sender, RoutedEventArgs e)
         {
-            foreach (CheckBox checkbox in lstCheckboxItems.Items)
+            if (chkAlleKoekjes.IsChecked == true)
             {
+                isValid = false;
+            }
+            else
+            {
+                isValid = false;
+            }
 
-                if (chkAlleKoekjes.IsChecked == true)
+            foreach (Category.category categoryName in (Category.category[])Enum.GetValues(typeof(Category.category)))
+            {
+                foreach (CheckBox checkBox in lstCheckboxItems.Items)
                 {
-                    checkbox.IsChecked = true;
-                    itemsChecked = lstCheckboxItems.Items.Count;
+                    string checkBoxName = checkBox.Content.ToString();
+                    checkBoxName = convert(checkBoxName);
+                    checkBoxName = Regex.Replace(checkBoxName, @"\s+", "");
+
+
+                    if (checkBoxName == categoryName.ToString())
+                    {
+                        CheckAllCheckBoxen(true, false);
+                    }
+                    else
+                    {
+
+                        CheckAllCheckBoxen(false, true);
+                    }
+
 
 
                 }
-                else
-                {
-                    checkbox.IsChecked = false;
-                    itemsChecked = 0;
 
-
-                }
             }
         }
 
+        private void CheckAllCheckBoxen(bool isCatagory, bool isSubcatagory)
+        {
+            //max aantal categorien
+            /*
+            if (subcategoriesChecked < 0)
+            {
+                subcategoriesChecked = 0;
+            }
+            */
+            
+            
+            while (isValid == false)
+            {
+                int i = 0;
+                foreach (CheckBox checkbox in lstCheckboxItems.Items)
+                {
+                    
+
+                    if (isCatagory == true && isSubcatagory == false)
+                    {
+                        if (chkAlleKoekjes.IsChecked == true)
+                        {
+                            checkbox.IsChecked = true;
+                           
+                            if (categoriesChecked == lstCheckboxItems.Items.Count)
+                            {
+                                isValid = true;
+                                break;
+                            }
+                           
+                            
+
+                        }
+                        else
+                        {
+                            checkbox.IsChecked = false;
+                            
+                            if (categoriesChecked == 0)
+                            {
+                                isValid = true;
+                                break;
+                            }
+                          
+
+                        }
+
+                    }
+                    else if (isCatagory == false && isSubcatagory == true)
+                    {
+                        
+                        if (chkAlleKoekjes.IsChecked == true)
+                        {
+                            i++;
+                            checkbox.IsChecked = true;
+
+                            if (i == lstCheckboxItems.Items.Count)
+                            {
+                                i = 0;
+                                isValid = true;
+                                break;
+                            }
+
+
+                        }
+                        else
+                        {
+                            i++;
+                            checkbox.IsChecked = false;
+                            /*
+                            if (i == 0)
+                            {
+                            */
+                                isValid = true;
+                                continue;
+                            /*
+                            }
+                            */
+
+                        }
+                    }
+
+                }
+            }
+            
+            
+           
+           
+        }
         private void chkCategory_Checked(object sender, RoutedEventArgs e)
         {
             Execute();
-            itemsChecked++;
+            categoriesChecked++;
             stackCustom.Visibility = Visibility.Visible;
 
 
@@ -1064,7 +1484,7 @@ namespace Krunsj_V1
         private void chkCategory_Unchecked(object sender, RoutedEventArgs e)
         {
             Execute();
-            itemsChecked--;
+            categoriesChecked--;
 
 
         }
@@ -1086,7 +1506,12 @@ namespace Krunsj_V1
         #region SubCategories (eventhandler: Click)
         private void chkSubCatagory_Checked(object sender, RoutedEventArgs e)
         {
-            DisplayGrid(true);
+            subcategoryIsChecked.Clear();
+            subcategoriesChecked++;
+            CheckCheckboxen(subcategoryIsChecked);
+            Console.WriteLine(subcategoriesChecked);
+            
+            //DisplayGrid(true);
 
 
 
@@ -1096,7 +1521,11 @@ namespace Krunsj_V1
         }
         private void chkSubCatagory_Unchecked(object sender, RoutedEventArgs e)
         {
-            DisplayGrid(false);
+            subcategoryIsChecked.Clear();
+            subcategoriesChecked--;
+            CheckCheckboxen(subcategoryIsChecked);
+            Console.WriteLine(subcategoriesChecked);
+            //DisplayGrid(false);
             //chkAlleKoekjes.Content = "unchecked";
 
             /*Hier kan ik eventueel zaken zetten voor subcatagiry checked*/
@@ -1106,8 +1535,11 @@ namespace Krunsj_V1
         
         private void Category_Clicked(object sender, MouseButtonEventArgs e)
         {
+            subcategoriesChecked = 0;
+            subcategoryIsChecked.Clear();
             btnHome.Visibility = Visibility.Visible;
             stackpanelIsClicked = true;
+            IsAllChecked(subcategoriesChecked);
             while (stackpanelIsClicked == true)
             {
                 if (stackpanelIsClicked == true)
@@ -1220,7 +1652,23 @@ namespace Krunsj_V1
         {
             GoBackToMenu();
             OnCheckedGiveProperties();
+            subcategoriesChecked = 0;
+            
+            foreach (Category c in categories)
+            {
+                if (c.CheckState == true)
+                {
+                    chkAlleKoekjes.SetCurrentValue(CheckBox.IsCheckedProperty, true);
+                }
+                else
+                {
+                    chkAlleKoekjes.SetCurrentValue(CheckBox.IsCheckedProperty, false);
+                }
+            }
+
+            IsAllChecked(categoriesChecked);
             btnHome.Visibility = Visibility.Collapsed;
+
 
         }
         private void GoBackToMenu()
@@ -1241,25 +1689,10 @@ namespace Krunsj_V1
 
             foreach (CheckBox checkbox in lstCheckboxItems.Items)
             {
-                //counter++;
+              
                 checkbox.Checked -= chkSubCatagory_Checked;
                 checkbox.Unchecked -= chkSubCatagory_Unchecked;
 
-                /*foreach (Category c in categories)
-                 {
-                     if (c.CheckState == true && c.CatagoryId == counter)
-                     {
-                         checkbox.SetCurrentValue(CheckBox.IsCheckedProperty, true);
-                         break;
-                     }
-                     else
-                     {
-                         checkbox.SetCurrentValue(CheckBox.IsCheckedProperty, false);
-                         break;
-                     }
-
-                 }
-                */
                 foreach (var item in categories.Select((value, i) => (value, i)))
                 {
                     Category c = item.value;
@@ -1280,25 +1713,7 @@ namespace Krunsj_V1
                     }
 
                 }
-                /*
-                 for (int i = 0; i < categories.Count; i++ )
-                 {
-                     if (categories[i].CheckState == true && categories[i].CatagoryId == i)
-                     {
-                         checkbox.SetCurrentValue(CheckBox.IsCheckedProperty, true);
-
-
-                     }
-                    /* 
-                     else if(categories[i].CheckState == false && categories[i].CatagoryId == i)
-                     {
-                         checkbox.SetCurrentValue(CheckBox.IsCheckedProperty, false);
-
-
-                     }
-                    
-                }*/
-
+            
 
                 if (checkbox.Visibility == Visibility.Collapsed)
                 {
@@ -1382,12 +1797,15 @@ namespace Krunsj_V1
             stackpanelIsSelected = true;
             //Kan hier later properties aan geven voor specification
         }
+
+
         #endregion
+
         #endregion
 
+        
 
-
-
+      
     }
         
 

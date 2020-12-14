@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Mainwindow" Height="900" Width="1598" WindowStartupLocation="CenterScreen"  WindowStyle="None"
         AllowsTransparency="True"
-        ResizeMode="CanResizeWithGrip" Icon="favicon (1).ico" MouseDown="Krunsj_MouseDown" >
+        ResizeMode="CanResizeWithGrip" Icon="favicon (1).ico" MouseDown="Krunsj_MouseDown" MouseMove="Krunsj_UpdateGui_MouseMove" >
 
 
     <Window.Resources>
@@ -297,16 +297,16 @@
         <DockPanel x:Name="Left_DockPanel" LastChildFill="False" Grid.IsSharedSizeScope="True" MouseMove="Left_DockPanel_MouseMove" Background="#FF7E116B" Height="900" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="365">
             <Grid x:Name="Grdinhoud" VerticalAlignment="Top" Width="362" RenderTransformOrigin="0.594,0.528">
                 <Grid x:Name="GrdinGrid" Height="804" VerticalAlignment="Top" Margin="0,96,0,0">
-                    <CheckBox MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkAlleKoekjes" Content=" Alle koekjes" VerticalAlignment="Top" Margin="155,35,26,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Foreground="White" Click="chkAlleKoekjes_Click" Cursor="Hand"/>
+                    <CheckBox x:Name="chkAlleKoekjes" Content=" Alle koekjes" VerticalAlignment="Top" Margin="155,35,26,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Foreground="White" Click="chkAlleKoekjes_Click" Cursor="Hand"/>
                     <ListBox ItemContainerStyle="{StaticResource ListBoxItemStyleTransparentSelect}" x:Name="lstCheckboxItems"   Margin="0,134,0,-95" HorizontalAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}"  >
-                        <CheckBox Uid="0" MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkItem0" Content="Item_0" FontSize="24"  Foreground="White" Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="0"  Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Cursor="Hand" />
-                        <CheckBox Uid="1" MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkItem1" Content="Item_1" FontSize="24"     Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Width="130" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Cursor="Hand"/>
-                        <CheckBox Uid="2" MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkItem2" Content="Item_2" FontSize="24"           Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Cursor="Hand" />
-                        <CheckBox Uid="3" MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkItem3" Content="Item_3" FontSize="24"         Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Cursor="Hand" />
-                        <CheckBox Uid="4" MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkItem4" Content="Item_4" FontSize="24"             Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Cursor="Hand"/>
-                        <CheckBox Uid="5" MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkItem5" Content="Item_5" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Cursor="Hand" />
-                        <CheckBox Uid="6" MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkItem6" Content="Item_6" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Margin="0" Cursor="Hand" />
-                        <CheckBox Uid="7" MouseLeave="lstCheckboxItems_UpdateGui" x:Name="chkItem7"  Content="Item_7" FontSize="24"          Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Margin="180 45"  Cursor="Hand" />
+                        <CheckBox Uid="0" x:Name="chkItem0" Content="Item_0" FontSize="24"  Foreground="White" Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="0"  Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Cursor="Hand" />
+                        <CheckBox Uid="1" x:Name="chkItem1" Content="Item_1" FontSize="24"     Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Width="130" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Cursor="Hand"/>
+                        <CheckBox Uid="2" x:Name="chkItem2" Content="Item_2" FontSize="24"           Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Cursor="Hand" />
+                        <CheckBox Uid="3" x:Name="chkItem3" Content="Item_3" FontSize="24"         Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Cursor="Hand" />
+                        <CheckBox Uid="4" x:Name="chkItem4" Content="Item_4" FontSize="24"             Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Cursor="Hand"/>
+                        <CheckBox Uid="5" x:Name="chkItem5" Content="Item_5" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Cursor="Hand" />
+                        <CheckBox Uid="6" x:Name="chkItem6" Content="Item_6" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Margin="0" Cursor="Hand" />
+                        <CheckBox Uid="7" x:Name="chkItem7"  Content="Item_7" FontSize="24"          Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Margin="180 45"  Cursor="Hand" />
                     </ListBox>
 
                 </Grid>
@@ -403,7 +403,7 @@
 
 
                 </StackPanel>
-                <StackPanel x:Uid="5" x:Name="stackSoortSpel" Width="170" Grid.Row="2" Margin="0,0,27,20" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom" Grid.Column="1" MouseDown="Category_Clicked" MouseEnter="stackSoortSpel_MouseEnter">
+                <StackPanel x:Uid="5" x:Name="stackSoortSpel" Width="170" Grid.Row="2" Margin="0,0,10,20" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom" Grid.Column="1" MouseDown="Category_Clicked" MouseEnter="stackSoortSpel_MouseEnter">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="Images/Fields.png"/>
                     </StackPanel.Background>
