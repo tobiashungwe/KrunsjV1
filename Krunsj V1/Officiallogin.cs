@@ -14,8 +14,15 @@ namespace Krunsj_V1
     public partial class Officiallogin : Form
     {
 
-       
 
+        #region Declartions
+        public User user;
+        private string username;
+        private string password;
+
+        
+        
+        #endregion
         public Officiallogin()
         {
 
@@ -44,6 +51,7 @@ namespace Krunsj_V1
         private void btnLogin2(object sender, EventArgs e)
         {
             Login();
+            user = new User(username, password);
         }
         /*
         private void btnLogin_KeyDown(object sender, KeyEventArgs e)
@@ -113,9 +121,11 @@ namespace Krunsj_V1
         {
             DB db = new DB();
 
-            String username = txtUsername.Text;
-            String password = txtPassword.Text;
+             username = txtUsername.Text;
+             password = txtPassword.Text;
 
+            
+            
             DataTable table = new DataTable();
 
             MySqlDataAdapter adapter = new MySqlDataAdapter();
@@ -156,6 +166,20 @@ namespace Krunsj_V1
             }
         }
 
-        
+        //read only property to access textbox text
+        public string UserName
+        {
+            get 
+            { 
+                if (txtUsername != null) 
+                { return txtUsername.Text;  }
+                else
+                {
+                    return "Unknown";
+                }
+                
+            }
+        }
+
     }
 }

@@ -14,6 +14,7 @@ namespace Krunsj_V1
 {
     /// <summary>
     /// Interaction logic for Mainwindow.xaml
+    /// Everything of functionality, you can find here!
     /// </summary>
     public partial class Mainwindow : Window
     {
@@ -29,7 +30,19 @@ namespace Krunsj_V1
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
 
         }
+        public Mainwindow(bool doNotMakeInvisibile)
+        {
 
+            this.WindowStyle = WindowStyle.None;
+            this.WindowState = WindowState.Normal;
+            InitializeComponent();
+            
+
+
+
+
+
+        }
 
 
         #region declartions
@@ -47,11 +60,9 @@ namespace Krunsj_V1
         private Dictionary<int, int> rndPositions = new Dictionary<int, int>();
         private int categoriesChecked = 0;
         private int subcategoriesChecked = 0;
-        private int counter = 0;
         private bool stackpanelIsClicked = false;
         private bool stackpanelIsSelected = false;
         private bool isValid = false;
-        private bool isCloseLoop = false;
         private string stackpanelName_Clicked;
         
 
@@ -60,19 +71,7 @@ namespace Krunsj_V1
 
 
         #endregion
-        public Mainwindow(bool doNotMakeInvisibile)
-        {
 
-            this.WindowStyle = WindowStyle.None;
-            this.WindowState = WindowState.Normal;
-            InitializeComponent();
-
-
-
-
-
-
-        }
 
         #region Methodes
 
@@ -218,7 +217,6 @@ namespace Krunsj_V1
         }
 
 
-
         private void Execute()
         {
             EmptyAllUsedLists();
@@ -291,16 +289,10 @@ namespace Krunsj_V1
                 if (category.BinaryCheckState == 1)
                 {
 
-                    //MessageBox.Show(category.ToString());
-                    //AddRandomMargin(minBottom, maxBottom, minRight, maxRight);
-
+                    
                     ShowObjects(category.CheckState, category.CatagoryId);
-                    //
+                    
 
-
-
-                    //category hier is een instance van de class category en zal niet werken door de naam category te geven
-                    //category.Margin = new Thickness();
 
 
                 }
@@ -617,10 +609,10 @@ namespace Krunsj_V1
                                 case 0:
                                     #region Materiaal
 
-                                    Subcatagory subcatagory0 = new Subcatagory(0, "Goedkoop");
-                                    Subcatagory subcatagory1 = new Subcatagory(1, "Duur");
-                                    Subcatagory subcatagory2 = new Subcatagory(2, "Veel materiaal");
-                                    Subcatagory subcatagory3 = new Subcatagory(3, "Weinig Materiaal");
+                                    Subcategory subcatagory0 = new Subcategory(0, "Goedkoop");
+                                    Subcategory subcatagory1 = new Subcategory(1, "Duur");
+                                    Subcategory subcatagory2 = new Subcategory(2, "Veel materiaal");
+                                    Subcategory subcatagory3 = new Subcategory(3, "Weinig Materiaal");
                                     categories[0].Subcatagories.Clear();
                                     categories[0].Subcatagories.Add(subcatagory0);
                                     categories[0].Subcatagories.Add(subcatagory1);
@@ -638,13 +630,13 @@ namespace Krunsj_V1
                                     break;
                                 case 1:
                                     #region Leeftijd
-                                    Subcatagory subcatagory4 = new Subcatagory(0, "5-6");
-                                    Subcatagory subcatagory5 = new Subcatagory(1, "7-9");
-                                    Subcatagory subcatagory6 = new Subcatagory(2, "10-12");
-                                    Subcatagory subcatagory7 = new Subcatagory(3, "13-14");
-                                    Subcatagory subcatagory8 = new Subcatagory(4, "14-16");
-                                    Subcatagory subcatagory9 = new Subcatagory(5, "16-18");
-                                    Subcatagory subcatagory10 = new Subcatagory(6, "18+");
+                                    Subcategory subcatagory4 = new Subcategory(0, "5-6");
+                                    Subcategory subcatagory5 = new Subcategory(1, "7-9");
+                                    Subcategory subcatagory6 = new Subcategory(2, "10-12");
+                                    Subcategory subcatagory7 = new Subcategory(3, "13-14");
+                                    Subcategory subcatagory8 = new Subcategory(4, "14-16");
+                                    Subcategory subcatagory9 = new Subcategory(5, "16-18");
+                                    Subcategory subcatagory10 = new Subcategory(6, "18+");
                                     categories[1].Subcatagories.Clear();
                                     categories[1].Subcatagories.Add(subcatagory4);
                                     categories[1].Subcatagories.Add(subcatagory5);
@@ -660,12 +652,12 @@ namespace Krunsj_V1
                                     break;
                                 case 2:
                                     #region Thema
-                                    Subcatagory subcatagory11 = new Subcatagory(0, "Op basis van bordspelen");
-                                    Subcatagory subcatagory12 = new Subcatagory(1, "Natuur");
-                                    Subcatagory subcatagory13 = new Subcatagory(2, "Plant een vlag");
-                                    Subcatagory subcatagory14 = new Subcatagory(3, "Avontuur");
-                                    Subcatagory subcatagory15 = new Subcatagory(4, "Koken");
-                                    Subcatagory subcatagory16 = new Subcatagory(5, "Fantasie");
+                                    Subcategory subcatagory11 = new Subcategory(0, "Op basis van bordspelen");
+                                    Subcategory subcatagory12 = new Subcategory(1, "Natuur");
+                                    Subcategory subcatagory13 = new Subcategory(2, "Plant een vlag");
+                                    Subcategory subcatagory14 = new Subcategory(3, "Avontuur");
+                                    Subcategory subcatagory15 = new Subcategory(4, "Koken");
+                                    Subcategory subcatagory16 = new Subcategory(5, "Fantasie");
 
                                     categories[2].Subcatagories.Clear();
                                     categories[2].Subcatagories.Add(subcatagory11);
@@ -681,11 +673,11 @@ namespace Krunsj_V1
                                     break;
                                 case 3:
                                     #region Terein
-                                    Subcatagory subcatagory17 = new Subcatagory(0, "Buiten");
-                                    Subcatagory subcatagory18 = new Subcatagory(1, "Binnen");
-                                    Subcatagory subcatagory19 = new Subcatagory(2, "Bos");
-                                    Subcatagory subcatagory20 = new Subcatagory(3, "Park");
-                                    Subcatagory subcatagory21 = new Subcatagory(4, "Duinen");
+                                    Subcategory subcatagory17 = new Subcategory(0, "Buiten");
+                                    Subcategory subcatagory18 = new Subcategory(1, "Binnen");
+                                    Subcategory subcatagory19 = new Subcategory(2, "Bos");
+                                    Subcategory subcatagory20 = new Subcategory(3, "Park");
+                                    Subcategory subcatagory21 = new Subcategory(4, "Duinen");
 
                                     categories[3].Subcatagories.Clear();
                                     categories[3].Subcatagories.Add(subcatagory17);
@@ -700,11 +692,11 @@ namespace Krunsj_V1
                                     break;
                                 case 4:
                                     #region Duur
-                                    Subcatagory subcatagory22 = new Subcatagory(0, "0 tot 15min");
-                                    Subcatagory subcatagory23 = new Subcatagory(1, "15 tot 30min");
-                                    Subcatagory subcatagory24 = new Subcatagory(2, "30 tot 60min");
-                                    Subcatagory subcatagory25 = new Subcatagory(3, "60 tot 90min");
-                                    Subcatagory subcatagory26 = new Subcatagory(4, "Meer dan 90min");
+                                    Subcategory subcatagory22 = new Subcategory(0, "0 tot 15min");
+                                    Subcategory subcatagory23 = new Subcategory(1, "15 tot 30min");
+                                    Subcategory subcatagory24 = new Subcategory(2, "30 tot 60min");
+                                    Subcategory subcatagory25 = new Subcategory(3, "60 tot 90min");
+                                    Subcategory subcatagory26 = new Subcategory(4, "Meer dan 90min");
                                     categories[4].Subcatagories.Clear();
                                     categories[4].Subcatagories.Add(subcatagory22);
                                     categories[4].Subcatagories.Add(subcatagory23);
@@ -718,14 +710,14 @@ namespace Krunsj_V1
                                     break;
                                 case 5:
                                     #region Soort Spelen
-                                    Subcatagory subcatagory27 = new Subcatagory(0, "Waterspelen");
-                                    Subcatagory subcatagory28 = new Subcatagory(1, "Osa");
-                                    Subcatagory subcatagory29 = new Subcatagory(2, "Teambuilding");
-                                    Subcatagory subcatagory30 = new Subcatagory(3, "Kennismakingsspelen");
-                                    Subcatagory subcatagory31 = new Subcatagory(4, "Avond en nachtspelen");
-                                    Subcatagory subcatagory32 = new Subcatagory(5, "Hevigespelen");
-                                    Subcatagory subcatagory33 = new Subcatagory(6, "Rustige Spelen");
-                                    Subcatagory subcatagory34 = new Subcatagory(8, "Kring/Broekzak-Spelen");
+                                    Subcategory subcatagory27 = new Subcategory(0, "Waterspelen");
+                                    Subcategory subcatagory28 = new Subcategory(1, "Osa");
+                                    Subcategory subcatagory29 = new Subcategory(2, "Teambuilding");
+                                    Subcategory subcatagory30 = new Subcategory(3, "Kennismakingsspelen");
+                                    Subcategory subcatagory31 = new Subcategory(4, "Avond en nachtspelen");
+                                    Subcategory subcatagory32 = new Subcategory(5, "Hevigespelen");
+                                    Subcategory subcatagory33 = new Subcategory(6, "Rustige Spelen");
+                                    Subcategory subcatagory34 = new Subcategory(8, "Kring/Broekzak-Spelen");
 
                                     categories[5].Subcatagories.Clear();
                                     categories[5].Subcatagories.Add(subcatagory27);
@@ -743,11 +735,11 @@ namespace Krunsj_V1
                                     break;
                                 case 6:
                                     #region Vakanties
-                                    Subcatagory subcatagory35 = new Subcatagory(0, "Binnenland");
-                                    Subcatagory subcatagory36 = new Subcatagory(1, "Bomal");
-                                    Subcatagory subcatagory37 = new Subcatagory(2, "Buitenland");
-                                    Subcatagory subcatagory38 = new Subcatagory(3, "Tentenkamp");
-                                    Subcatagory subcatagory39 = new Subcatagory(4, "Oostduinkerke");
+                                    Subcategory subcatagory35 = new Subcategory(0, "Binnenland");
+                                    Subcategory subcatagory36 = new Subcategory(1, "Bomal");
+                                    Subcategory subcatagory37 = new Subcategory(2, "Buitenland");
+                                    Subcategory subcatagory38 = new Subcategory(3, "Tentenkamp");
+                                    Subcategory subcatagory39 = new Subcategory(4, "Oostduinkerke");
 
                                     categories[6].Subcatagories.Clear();
                                     categories[6].Subcatagories.Add(subcatagory35);
@@ -763,11 +755,11 @@ namespace Krunsj_V1
                                     break;
                                 case 7:
                                     #region Intensiteit
-                                    Subcatagory subcatagory40 = new Subcatagory(0, "Matig");
-                                    Subcatagory subcatagory41 = new Subcatagory(1, "Rustig");
-                                    Subcatagory subcatagory42 = new Subcatagory(2, "Zwaar");
-                                    Subcatagory subcatagory43 = new Subcatagory(3, "Hevig");
-                                    Subcatagory subcatagory44 = new Subcatagory(4, "Extreem");
+                                    Subcategory subcatagory40 = new Subcategory(0, "Matig");
+                                    Subcategory subcatagory41 = new Subcategory(1, "Rustig");
+                                    Subcategory subcatagory42 = new Subcategory(2, "Zwaar");
+                                    Subcategory subcatagory43 = new Subcategory(3, "Hevig");
+                                    Subcategory subcatagory44 = new Subcategory(4, "Extreem");
 
                                     categories[7].Subcatagories.Clear();
                                     categories[7].Subcatagories.Add(subcatagory40);
@@ -821,7 +813,7 @@ namespace Krunsj_V1
                         {
                             if (i < categories[catagoryID].Subcatagories.Count)
                             {
-                                string subcatagoryName = categories[catagoryID].Subcatagories[i].SubcatagoryName;
+                                string subcatagoryName = categories[catagoryID].Subcatagories[i].SubcategoryName;
                                 checkBox.Content = subcatagoryName;
                                 
                                 checkBox.Margin = new Thickness(0, 0, 0, 0);
@@ -946,124 +938,6 @@ namespace Krunsj_V1
             return st;
         }
 
-        #endregion
-
-        #region EventHandelers
-
-
-        #region Startup and update
-
-        private void Left_DockPanel_MouseMove(object sender, MouseEventArgs e)
-        {
-            //IsAllChecked(categoriesChecked);
-
-
-        }
-       
-        private void GrdCentrum_Loaded(object sender, RoutedEventArgs e)
-        {
-            Boot();
-            AddingCategoriesToList();
-            IsAllChecked(categoriesChecked);
-
-        }
-        private void Krunsj_UpdateGui_MouseMove(object sender, MouseEventArgs e)
-        {
-
-            ShowBtnHome();
-            ShowChkAlleKoekjes();
-            
-
-        } 
-        private void StuffIDoNotWantToDelete()
-        {
-            /*
-            bool isActivated = false;
-
-            while (isCloseLoop == false)
-            {
-                foreach (Category category in categories)
-                {
-
-                    List<int> saveCounter = new List<int>();
-                    saveCounter.Add(counter);
-
-                    if (category.CheckState == true)
-                    {
-
-                        while (isActivated == false)
-                        {
-                            if (category.CheckState == true)
-                            {
-                                IsAllChecked(categoriesChecked);
-                                foreach (Subcatagory subcatagory in category.Subcatagories)
-                                {
-                                    if (checkBoxName == subcatagory.SubcatagoryName)
-                                    {
-                                        IsAllChecked(subcategoriesChecked);
-                                        if (subcategoriesChecked == lstCheckboxItems.Items.Count)
-                                        {
-
-                                            isActivated = true;
-                                            counter++;
-                                        }
-                                        else
-                                        {
-                                            break;
-                                        }
-
-                                    }
-                                    else
-                                    {
-                                        if (subcategoriesChecked == lstCheckboxItems.Items.Count)
-                                        {
-                                            isActivated = true;
-                                            counter++;
-                                        }
-                                        else
-                                        {
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                isActivated = true;
-                                counter++;
-                                continue;
-                            }
-
-                            var index = categories.Where(c => c.CheckState == category.CheckState);
-
-                            Console.WriteLine(index);
-                        }
-                    }
-                    else
-                    {
-
-                        if (8 == categories.Count)
-                        {
-                            isCloseLoop = true;
-                            continue;
-                        }
-                        else
-                        {
-                            counter++;
-                            continue;
-                        }
-
-
-                    }
-
-
-                }
-            }
-
-            break;
-            */
-        }
-
         private void ShowBtnHome()
         {
             for (int i = 0; i < categoryIsChecked.Count; i++)
@@ -1077,7 +951,7 @@ namespace Krunsj_V1
                 }
                 foreach (Category.category categoryName in (Category.category[])Enum.GetValues(typeof(Category.category)))
                 {
-                    isCloseLoop = false;
+                    
 
                     foreach (CheckBox checkBox in lstCheckboxItems.Items)
                     {
@@ -1122,14 +996,14 @@ namespace Krunsj_V1
             foreach (Category category in categories)
             {
                 //Hier kan ik eventueel werken met een while
-                
+
                 foreach (CheckBox checkbox in lstCheckboxItems.Items)
                 {
-                    
+
                     string checkboxName = checkbox.Content.ToString();
                     checkboxName = convert(checkboxName);
                     checkboxName = Regex.Replace(checkboxName, @"\s+", "");
-                    
+
                     if (category.CategoryName == checkboxName)
                     {
                         if (category.CheckState == true)
@@ -1170,21 +1044,21 @@ namespace Krunsj_V1
                                 int index = item.i;
                                 List<int> storedNumbers = new List<int>();
                                 storedNumbers.Add(index);
-                                string convertedSubcatagoryName = convert(item.value.SubcatagoryName);
+                                string convertedSubcatagoryName = convert(item.value.SubcategoryName);
                                 convertedSubcatagoryName = Regex.Replace(convertedSubcatagoryName, @"\s+", "");
                                 if (convertedSubcatagoryName == checkboxName)
                                 {
-                                    
+
 
                                     if (checkbox.IsChecked == true)
                                     {
                                         if (!subcategoryIsChecked.Contains(false))
                                         {
-                                            
+
                                             if (subcategoriesChecked == subcategoryIsChecked.Select((value, y) => value ? y : -1).Where(o => o >= 0).ToList().Count || subcategoriesChecked >= subcategoryIsChecked.Select((value, y) => value ? y : -1).Where(o => o >= 0).ToList().Count - 1)
                                             {
                                                 chkAlleKoekjes.SetCurrentValue(CheckBox.IsCheckedProperty, true);
-                                                
+
                                             }
                                             else
                                             {
@@ -1196,15 +1070,15 @@ namespace Krunsj_V1
                                             chkAlleKoekjes.SetCurrentValue(CheckBox.IsCheckedProperty, false);
                                             break;
                                         }
-                                        
-                                        
-                                        
+
+
+
 
                                     }
                                     else
                                     {
-                                      
-                                        
+
+
                                         if (subcategoriesChecked <= lstCheckboxItems.Items.Count)
                                         {
                                             chkAlleKoekjes.SetCurrentValue(CheckBox.IsCheckedProperty, false);
@@ -1221,11 +1095,11 @@ namespace Krunsj_V1
                                     continue;
                                 }
                             }
-                            
 
 
-                            
-                           
+
+
+
                         }
                         else
                         {
@@ -1236,18 +1110,123 @@ namespace Krunsj_V1
                     {
                         break;
                     }
-                    
-                    
 
-                    
 
-                    
-                   
+
+
+
+
+
 
                 }
-               
+
             }
         }
+
+        private void GoBackToMenu()
+        {
+            #region Resset labels
+            chkItem0.Content = Category.category.Materiaal.ToString();
+            chkItem1.Content = Category.category.Leeftijd.ToString();
+            chkItem2.Content = Category.category.Thema.ToString();
+            chkItem3.Content = Category.category.Terein.ToString();
+            chkItem4.Content = Category.category.Duur.ToString();
+            chkItem5.Content = "Soort spel";
+            chkItem6.Content = Category.category.Vakanties.ToString();
+            chkItem7.Content = Category.category.Intensiteit.ToString();
+            #endregion
+
+            #region Reset of events
+            // int counter = -1;
+
+            foreach (CheckBox checkbox in lstCheckboxItems.Items)
+            {
+
+                checkbox.Checked -= chkSubCatagory_Checked;
+                checkbox.Unchecked -= chkSubCatagory_Unchecked;
+
+                foreach (var item in categories.Select((value, i) => (value, i)))
+                {
+                    Category c = item.value;
+                    int index = item.i;
+
+                    if (categories[index].CheckState == true && categories[index].CatagoryId == index && checkbox.Uid == Convert.ToString(index))
+                    {
+                        checkbox.SetCurrentValue(CheckBox.IsCheckedProperty, true);
+
+
+                    }
+
+                    else if (categories[index].CheckState == false && categories[index].CatagoryId == index && checkbox.Uid == Convert.ToString(index))
+                    {
+                        checkbox.SetCurrentValue(CheckBox.IsCheckedProperty, false);
+
+
+                    }
+
+                }
+
+
+                if (checkbox.Visibility == Visibility.Collapsed)
+                {
+                    checkbox.Visibility = Visibility.Visible;
+
+
+                }
+                if (Convert.ToInt32(checkbox.Uid) % 2 == 0)
+                {
+                    checkbox.Margin = new Thickness(0, 0, 0, 0);
+                }
+                else
+                {
+                    checkbox.Margin = new Thickness(180, 45, 180, 45);
+                }
+
+                checkbox.Checked += chkCategory_Checked;
+                checkbox.Unchecked += chkCategory_Unchecked;
+            }
+
+
+            #endregion
+        }
+        
+        private void CheckUserPathForCategories(string path)
+        {
+
+        }
+
+        #endregion
+
+        #region EventHandelers
+
+
+        #region Startup and update
+
+        private void Left_DockPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            //IsAllChecked(categoriesChecked);
+
+
+        }
+       
+        private void GrdCentrum_Loaded(object sender, RoutedEventArgs e)
+        {
+            Boot();
+            AddingCategoriesToList();
+            IsAllChecked(categoriesChecked);
+
+        }
+        private void Krunsj_UpdateGui_MouseMove(object sender, MouseEventArgs e)
+        {
+
+            ShowBtnHome();
+            ShowChkAlleKoekjes();
+            
+
+        } 
+        
+
+        
         #endregion
         //window bar
         #region Windowbar properties
@@ -1489,50 +1468,6 @@ namespace Krunsj_V1
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-        #endregion
-
-        #region SubCategories (eventhandler: Click)
-        private void chkSubCatagory_Checked(object sender, RoutedEventArgs e)
-        {
-            subcategoryIsChecked.Clear();
-            subcategoriesChecked++;
-            CheckCheckboxen(subcategoryIsChecked);
-            Console.WriteLine(subcategoriesChecked);
-            
-            //DisplayGrid(true);
-
-
-
-
-
-
-        }
-        private void chkSubCatagory_Unchecked(object sender, RoutedEventArgs e)
-        {
-            subcategoryIsChecked.Clear();
-            subcategoriesChecked--;
-            CheckCheckboxen(subcategoryIsChecked);
-            Console.WriteLine(subcategoriesChecked);
-            //DisplayGrid(false);
-            //chkAlleKoekjes.Content = "unchecked";
-
-            /*Hier kan ik eventueel zaken zetten voor subcatagiry checked*/
-
-        }
-
-        
         private void Category_Clicked(object sender, MouseButtonEventArgs e)
         {
             subcategoriesChecked = 0;
@@ -1573,8 +1508,8 @@ namespace Krunsj_V1
 
                                                                 if (category.CategoryName == stackpanelName_Clicked && category.CheckState == true && stackpanelIsSelected == true)
                                                                 {
-                                                                    
-                                                                    
+
+
                                                                     AddSubCategories();
                                                                     stackpanelIsClicked = false;
                                                                     stackpanelIsSelected = false;
@@ -1602,7 +1537,7 @@ namespace Krunsj_V1
 
                                             }
                                         }
-                                        
+
                                     }
                                     else
                                     {
@@ -1631,10 +1566,10 @@ namespace Krunsj_V1
                 {
                     break;
                 }
-                
+
             }
-            
-            
+
+
 
 
             //
@@ -1643,6 +1578,38 @@ namespace Krunsj_V1
 
         }
 
+        #endregion
+
+        #region SubCategories (eventhandler: Click)
+        private void chkSubCatagory_Checked(object sender, RoutedEventArgs e)
+        {
+            subcategoryIsChecked.Clear();
+            subcategoriesChecked++;
+            CheckCheckboxen(subcategoryIsChecked);
+            Console.WriteLine(subcategoriesChecked);
+
+
+            
+            
+
+
+
+
+
+
+        }
+        private void chkSubCatagory_Unchecked(object sender, RoutedEventArgs e)
+        {
+            subcategoryIsChecked.Clear();
+            subcategoriesChecked--;
+            CheckCheckboxen(subcategoryIsChecked);
+            Console.WriteLine(subcategoriesChecked);
+            
+            //Display settings
+
+            /*Hier kan ik eventueel zaken zetten voor subcatagiry checked*/
+
+        }
 
 
         #endregion
@@ -1671,78 +1638,13 @@ namespace Krunsj_V1
 
 
         }
-        private void GoBackToMenu()
-        {
-            #region Resset labels
-            chkItem0.Content = Category.category.Materiaal.ToString();
-            chkItem1.Content = Category.category.Leeftijd.ToString();
-            chkItem2.Content = Category.category.Thema.ToString();
-            chkItem3.Content = Category.category.Terein.ToString();
-            chkItem4.Content = Category.category.Duur.ToString();
-            chkItem5.Content = "Soort spel";
-            chkItem6.Content = Category.category.Vakanties.ToString();
-            chkItem7.Content = Category.category.Intensiteit.ToString();
-            #endregion
-
-            #region Reset of events
-            // int counter = -1;
-
-            foreach (CheckBox checkbox in lstCheckboxItems.Items)
-            {
-              
-                checkbox.Checked -= chkSubCatagory_Checked;
-                checkbox.Unchecked -= chkSubCatagory_Unchecked;
-
-                foreach (var item in categories.Select((value, i) => (value, i)))
-                {
-                    Category c = item.value;
-                    int index = item.i;
-
-                    if (categories[index].CheckState == true && categories[index].CatagoryId == index && checkbox.Uid == Convert.ToString(index))
-                    {
-                        checkbox.SetCurrentValue(CheckBox.IsCheckedProperty, true);
-
-
-                    }
-
-                    else if (categories[index].CheckState == false && categories[index].CatagoryId == index && checkbox.Uid == Convert.ToString(index))
-                    {
-                        checkbox.SetCurrentValue(CheckBox.IsCheckedProperty, false);
-
-
-                    }
-
-                }
-            
-
-                if (checkbox.Visibility == Visibility.Collapsed)
-                {
-                    checkbox.Visibility = Visibility.Visible;
-
-
-                }
-                if (Convert.ToInt32(checkbox.Uid) % 2 == 0)
-                {
-                    checkbox.Margin = new Thickness(0, 0, 0, 0);
-                }
-                else
-                {
-                    checkbox.Margin = new Thickness(180, 45, 180, 45);
-                }
-
-                checkbox.Checked += chkCategory_Checked;
-                checkbox.Unchecked += chkCategory_Unchecked;
-            }
-
-
-            #endregion
-        }
+        
 
 
 
         #endregion
 
-        #region Security (eventhandler: hover )
+        #region Security (eventhandler: Enter )
         private void stackMateriaal_MouseEnter(object sender, MouseEventArgs e)
         {
             stackpanelIsSelected = true;

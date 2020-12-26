@@ -99,9 +99,9 @@ namespace Krunsj_V1.Lib.Framework
             set { cookies = value; }
         }
 
-        private List<Subcatagory> subcatagories = new List<Subcatagory>();
+        private List<Subcategory> subcatagories = new List<Subcategory>();
 
-        public List<Subcatagory> Subcatagories
+        public List<Subcategory> Subcatagories
         {
             get { return subcatagories; }
             set { subcatagories = value; }
@@ -113,7 +113,7 @@ namespace Krunsj_V1.Lib.Framework
         public Category()
         {
         }
-        public Category(int catagoryId , bool checkState , int binaryCheckState , StackPanel cookieName/*, List<Subcatagory>*/)
+        public Category(int catagoryId , bool checkState , int binaryCheckState , StackPanel cookieName/*, List<Subcategory>*/)
         {
             this.catagoryID = catagoryId;
             this.categoryName = GetCategory(catagoryId);
