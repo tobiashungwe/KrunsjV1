@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 
+
 namespace Krunsj_V1
 {
     /// <summary>
@@ -18,33 +19,6 @@ namespace Krunsj_V1
     /// </summary>
     public partial class Mainwindow : Window
     {
-        public Mainwindow()
-        {
-            InitializeComponent();
-            this.Visibility = Visibility.Hidden;
-
-            Register Login = new Register();
-
-            Officiallogin form = new Officiallogin();
-            form.ShowDialog();
-            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
-
-        }
-        public Mainwindow(bool doNotMakeInvisibile)
-        {
-
-            this.WindowStyle = WindowStyle.None;
-            this.WindowState = WindowState.Normal;
-            InitializeComponent();
-            
-
-
-
-
-
-        }
-
-
         #region declartions
         //default settings
 
@@ -63,14 +37,49 @@ namespace Krunsj_V1
         private bool stackpanelIsClicked = false;
         private bool stackpanelIsSelected = false;
         private bool isValid = false;
+        private bool isNotVisable = false;
         private string stackpanelName_Clicked;
+        
         
 
 
 
 
-
         #endregion
+
+        public Mainwindow()
+        {
+            InitializeComponent();
+            this.Visibility = Visibility.Hidden;
+
+            Register Login = new Register();
+            Officiallogin form = new Officiallogin();
+
+            form.ShowDialog();
+            
+            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            
+
+        }
+        public Mainwindow(bool doNotMakeInvisibile)
+        {
+
+            this.WindowStyle = WindowStyle.None;
+            this.WindowState = WindowState.Normal;
+            this.IsEnabled = true;
+            InitializeComponent();
+
+
+           
+
+            
+
+        }
+       
+
+        
+
+        
 
 
         #region Methodes
@@ -531,7 +540,7 @@ namespace Krunsj_V1
                 foreach (UIElement uIElement in GrdCentrum.Children)
                 {
                     string elementName = uIElement.ToString();
-                    if (elementName != "System.Windows.Controls.Canvas" && elementName != "System.Windows.Controls.Button" && uIElement.Uid != "8")
+                    if (elementName != "System.Windows.Controls.Canvas" && elementName != "System.Windows.Controls.Button" && elementName != "System.Windows.Controls.GroupBox Header:Geselecteerde categorieën Content:" && uIElement.Uid != "8")
                     {
                         int id = Convert.ToInt32(uIElement.Uid);
                         Grid.SetRow(uIElement, rndPositions[id].y);
@@ -612,7 +621,7 @@ namespace Krunsj_V1
                                     Subcategory subcatagory0 = new Subcategory(0, "Goedkoop");
                                     Subcategory subcatagory1 = new Subcategory(1, "Duur");
                                     Subcategory subcatagory2 = new Subcategory(2, "Veel materiaal");
-                                    Subcategory subcatagory3 = new Subcategory(3, "Weinig Materiaal");
+                                    Subcategory subcatagory3 = new Subcategory(3, "Weinig materiaal");
                                     categories[0].Subcatagories.Clear();
                                     categories[0].Subcatagories.Add(subcatagory0);
                                     categories[0].Subcatagories.Add(subcatagory1);
@@ -715,7 +724,7 @@ namespace Krunsj_V1
                                     Subcategory subcatagory29 = new Subcategory(2, "Teambuilding");
                                     Subcategory subcatagory30 = new Subcategory(3, "Kennismakingsspelen");
                                     Subcategory subcatagory31 = new Subcategory(4, "Avond en nachtspelen");
-                                    Subcategory subcatagory32 = new Subcategory(5, "Hevigespelen");
+                                    Subcategory subcatagory32 = new Subcategory(5, "Hevige spelen");
                                     Subcategory subcatagory33 = new Subcategory(6, "Rustige Spelen");
                                     Subcategory subcatagory34 = new Subcategory(8, "Kring/Broekzak-Spelen");
 
@@ -1701,13 +1710,34 @@ namespace Krunsj_V1
         }
 
 
-        #endregion
+
+
 
         #endregion
 
-        
+        #endregion
+
+        private void Krunsj_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Visibility settings
+            grpCategorySummary.Visibility = Visibility.Collapsed;
+            
+
+                            
+            
+            wndWelcome wndWelcome = new wndWelcome();
+            wndWelcome.Visibility = Visibility.Visible;
+            System.Windows.Forms.Application.Exit();
+            wndWelcome.ShowDialog();
+                       
+        }
+
+
+
 
       
+
+        
     }
         
 

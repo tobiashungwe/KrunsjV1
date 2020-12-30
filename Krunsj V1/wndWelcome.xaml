@@ -11,7 +11,7 @@
     Title="wndWelcome"
     TitleAlignment="Center"
     WindowKind="Tabbed"
-    WindowStyle="None" ResizeMode="NoResize" Background="{x:Null}" Loaded="wndUserSettings_Loaded_1">
+    WindowStyle="None" ResizeMode="NoResize" Background="{x:Null}" Loaded="wndUserSettings_Loaded_1" MouseMove="wndUserSettings_MouseMove" WindowStartupLocation="CenterScreen">
     <dx:ThemedWindow.Resources>
         <!--Style voor button-->
         <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
@@ -99,11 +99,58 @@
             </Setter>
         </Style>
         <!--Second style voor textbox -->
+        <Style TargetType="{x:Type TextBox}" x:Key="TextboxStyle2">
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="#FF95848D"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="MinHeight" Value="20"/>
+
+            <Setter Property="FontFamily" Value="Century Gothic" />
+            <Setter Property="Template">
+
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border"
+                                CornerRadius="10"
+                                BorderBrush="#FF95848D"
+                                BorderThickness="2"
+                                Background="#fff"
+                                >
+                            <ScrollViewer 
+                                Margin="5"
+                                x:Name="PART_ContentHost"
+                                Focusable="false"
+                               
+                                
+                                />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+
+                                <Setter Property="Foreground" Value="White" />
+
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="FontFamily" Value="Century Gothic" />
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--first style voor textblock -->
         <Style TargetType="{x:Type TextBlock}" x:Key="textboxstyle2">
             <Setter Property="Padding" Value="10"></Setter>
             <Setter Property="FontFamily" Value="Century Gothic" />
 
         </Style>
+
+
 
         <!-- Simple Radio Button -->
         <Style TargetType="{x:Type RadioButton}" x:Key="rdostyle1">
@@ -151,123 +198,126 @@
 
     <Grid HorizontalAlignment="Left" Width="810" Height="598" VerticalAlignment="Bottom">
         <Grid.RowDefinitions>
-            <RowDefinition Height="200*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="39*"/>
+            <RowDefinition Height="195*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="34*"/>
         </Grid.RowDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="officialBackgroundWelcome.jpg" Stretch="UniformToFill" />
         </Grid.Background>
-        <Image
+        <Image x:Name="imgHeader"
             Height="330"
-            Margin="175,45,0,0"
+            Margin="195,60,0,0"
             VerticalAlignment="Top"
-            Source="Untitled-1.png" HorizontalAlignment="Left" Width="460" />
+            Source="pack://siteoforigin:,,,/Images/headerPage1.png" HorizontalAlignment="Left" Width="460" />
 
-        <Grid HorizontalAlignment="Left" Height="79" Margin="0,0,0,-1" VerticalAlignment="Top" Width="810" Grid.Row="2" >
-
-            <Viewbox Margin="159,13,583,10"/>
-            <Viewbox Margin="317,26,455,24">
-                <RadioButton Height="23" Width="23" x:Name="rdoThirdScreen" GroupName="TextAlignmentGroup"
-                                                IsChecked="{Binding IsChecked}">
-                    <RadioButton.Template>
-                        <ControlTemplate TargetType="RadioButton">
-                            <Image Name="ImageName" Stretch="Fill"/>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="ToggleButton.IsChecked" Value="True">
-                                    <Setter TargetName="ImageName" Property="Image.Source">
-                                        <Setter.Value>
-                                            <BitmapImage UriSource="C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\Images\rdoChecked1.png"></BitmapImage>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
-                                <Trigger Property="ToggleButton.IsChecked" Value="False">
-                                    <Setter TargetName="ImageName" Property="Image.Source">
-                                        <Setter.Value>
-                                            <BitmapImage UriSource="C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\Images\rdoUnchecked1.png"></BitmapImage>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </RadioButton.Template>
-                </RadioButton>
-            </Viewbox>
-            <dx:SimpleButton
+        <Grid HorizontalAlignment="Left" Height="79" Margin="0,0,0,-11" VerticalAlignment="Top" Width="810" Grid.Row="2" >
+            <Viewbox Margin="317,26,455,24"/>
+            <dx:SimpleButton x:Name="btnContinue"
             Width="130"
             Height="43"
-            Margin="510,13,0,0"
+            Margin="620,18,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Click="SimpleButton_Click"
             Content="Continue&#xA;"
             FontSize="18"
             Foreground="#FF95848D"
             GlyphAlignment="Left"
-            Style="{StaticResource ResourceKey=ButtonStyle1}" />
-            <Viewbox Margin="257,26,515,24">
-                <RadioButton Height="23" Width="23" x:Name="rdoThirdScreen1" GroupName="TextAlignmentGroup"
-                    IsChecked="{Binding IsChecked}">
-                    <RadioButton.Template>
-                        <ControlTemplate TargetType="{x:Type RadioButton}">
-                            <Image x:Name="ImageName" Stretch="Fill"/>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsChecked" Value="True">
-                                    <Setter TargetName="ImageName" Property="Source">
-                                        <Setter.Value>
-                                            <BitmapImage UriSource="C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\Images\rdoChecked1.png"/>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
-                                <Trigger Property="IsChecked" Value="False">
-                                    <Setter TargetName="ImageName" Property="Source">
-                                        <Setter.Value>
-                                            <BitmapImage UriSource="C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\Images\rdoUnchecked1.png"/>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </RadioButton.Template>
-                </RadioButton>
-            </Viewbox>
-            <Viewbox Margin="202,26,570,24">
-                <RadioButton Height="23" Width="23" x:Name="rdoThirdScreen2" GroupName="TextAlignmentGroup"
-                    IsChecked="{Binding IsChecked}">
-                    <RadioButton.Template>
-                        <ControlTemplate TargetType="{x:Type RadioButton}">
-                            <Image x:Name="ImageName" Stretch="Fill"/>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsChecked" Value="True">
-                                    <Setter TargetName="ImageName" Property="Source">
-                                        <Setter.Value>
-                                            <BitmapImage UriSource="C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\Images\rdoChecked1.png"/>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
-                                <Trigger Property="IsChecked" Value="False">
-                                    <Setter TargetName="ImageName" Property="Source">
-                                        <Setter.Value>
-                                            <BitmapImage UriSource="C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\Images\rdoUnchecked1.png"/>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </RadioButton.Template>
-                </RadioButton>
-            </Viewbox>
+            Style="{StaticResource ResourceKey=ButtonStyle1}" RenderTransformOrigin="1.154,-3.442" Click="btnContinue_Click" />
+            <RadioButton x:Name="rdoFirstScreen" GroupName="TextAlignmentGroup" IsChecked="{Binding IsChecked}" Checked="rdoFirstScreen_Checked" Unchecked="rdoFirstScreen_Unchecked" Margin="48,18,722,24">
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Image x:Name="ImageName" Stretch="Fill"/>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="ImageName" Property="Source">
+                                    <Setter.Value>
+                                        <BitmapImage UriSource="pack://siteoforigin:,,,/Images/rdoChecked1.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="ImageName" Property="Source">
+                                    <Setter.Value>
+                                        <BitmapImage UriSource="pack://siteoforigin:,,,/Images/rdoUnchecked1.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </RadioButton.Template>
+            </RadioButton>
+            <RadioButton x:Name="rdoSecondScreen" GroupName="TextAlignmentGroup" IsChecked="{Binding IsChecked}" Checked="rdoSecondScreen_Checked" Unchecked="rdoSecondScreen_Unchecked" RenderTransformOrigin="-2.655,0.828" Margin="115,18,655,24">
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Image x:Name="ImageName" Stretch="Fill"/>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="ImageName" Property="Source">
+                                    <Setter.Value>
+                                        <BitmapImage UriSource="pack://siteoforigin:,,,/Images/rdoChecked1.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="ImageName" Property="Source">
+                                    <Setter.Value>
+                                        <BitmapImage UriSource="pack://siteoforigin:,,,/Images/rdoUnchecked1.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </RadioButton.Template>
+            </RadioButton>
+            <RadioButton x:Name="rdoThirdScreen" GroupName="TextAlignmentGroup" IsChecked="{Binding IsChecked}" Checked="rdoThirdScreen_Checked" Unchecked="rdoThirdScreen_Unchecked" Margin="180,18,590,24">
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Image x:Name="ImageName" Stretch="Fill"/>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="ImageName" Property="Source">
+                                    <Setter.Value>
+                                        <BitmapImage UriSource="pack://siteoforigin:,,,/Images/rdoChecked1.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="ImageName" Property="Source">
+                                    <Setter.Value>
+                                        <BitmapImage UriSource="pack://siteoforigin:,,,/Images/rdoUnchecked1.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </RadioButton.Template>
+            </RadioButton>
         </Grid>
-        <Border BorderBrush="#95848D" CornerRadius="10" BorderThickness="3" HorizontalAlignment="Right" Height="110" Margin="0,0,58,7" VerticalAlignment="Bottom" Width="705" Grid.Row="1" Background="White">
+        <Border BorderBrush="#95848D" CornerRadius="10" BorderThickness="3" HorizontalAlignment="Right" Height="135" Margin="0,0,58,0" VerticalAlignment="Bottom" Width="705" Background="White" Grid.Row="1">
             <TextBlock
             x:Name="txtBlockInformation"
-            FontSize="20"
+            FontSize="14"
             Foreground="Black"
-            Padding="25,20,25,10"
+            Padding="10,10,30,10"
             RenderTransformOrigin="0.503,0.5"
             UseLayoutRounding="True"
-            Style="{StaticResource ResourceKey=textboxstyle2}" Background="White" Margin="7,4,7,7" />
+            Style="{StaticResource ResourceKey=textboxstyle2}" Background="White" Margin="7" />
         </Border>
+        <TextBox x:Name="txtUserPathInput" IsReadOnly="True" IsEnabled="False" Style="{StaticResource ResourceKey=TextboxStyle2}" HorizontalAlignment="Left" Height="43" TextWrapping="Wrap" Text="Selecteer map met alle spelletjes bv: documenten&#xD;&#xA;&#xD;&#xA;" VerticalAlignment="Top" Width="553" Margin="47,344,0,0"/>
+        <dx:SimpleButton x:Name="btnBrowse"
+                Width="130"
+                Height="43"
+                Margin="622,344,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Content="Browse"
+                FontSize="18"
+                Foreground="#FF95848D"
+                GlyphAlignment="Left"
+                Style="{StaticResource ResourceKey=ButtonStyle1}" RenderTransformOrigin="1.154,-3.442" Click="btnBrowse_Click" />
+        <Image x:Name="imgOrganisation" HorizontalAlignment="Left" Height="286" Margin="170,30,0,0" VerticalAlignment="Top" Width="450" Source="pack://siteoforigin:,,,/Images/WelcomeScreen.png" Stretch="Uniform"/>
+        <Image x:Name="imgExample" HorizontalAlignment="Left" Height="341" Margin="47,39,0,0" VerticalAlignment="Top" Width="705" Source="pack://siteoforigin:,,,/Images/example.png" Stretch="Uniform"/>
     </Grid>
 
 

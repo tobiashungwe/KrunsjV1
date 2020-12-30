@@ -2,10 +2,10 @@
 <Root Type="DevExpress.CodeRush.Foundation.Markers.SolutionBookmarksContainer">
   <Options Language="Neutral">
     <Items>
-      <Item Id="{617a1523-105a-4837-9007-3de932d0cf05}">
+      <Item Id="{8320db4b-9b88-4226-8671-8bd87290524e}">
         <Id>1</Id>
         <File>KrunsjV1\Krunsj V1\wndWelcome.xaml</File>
-        <Line>255</Line>
+        <Line>252</Line>
         <Character>35</Character>
         <ViewportTop>126</ViewportTop>
         <ViewportTopMax>168</ViewportTopMax>

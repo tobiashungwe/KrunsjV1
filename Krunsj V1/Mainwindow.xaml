@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="Mainwindow" Height="900" Width="1598" WindowStartupLocation="CenterScreen"  WindowStyle="None"
         AllowsTransparency="True"
-        ResizeMode="CanResizeWithGrip" Icon="favicon (1).ico" MouseDown="Krunsj_MouseDown" MouseMove="Krunsj_UpdateGui_MouseMove" >
+        ResizeMode="CanResizeWithGrip" Icon="favicon (1).ico" MouseDown="Krunsj_MouseDown" MouseMove="Krunsj_UpdateGui_MouseMove" Loaded="Krunsj_Loaded" >
 
 
     <Window.Resources>
@@ -26,7 +26,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type CheckBox}">
                         <StackPanel Orientation="Horizontal">
-                            <Image x:Name="checkboxImage" Source="C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\Images\CheckboxUncheched.png" Width="32"/>
+                            <Image x:Name="checkboxImage" Source="pack://siteoforigin:,,,/Images/CheckboxUnchecked.png" Width="32"/>
                             <ContentPresenter/>
                         </StackPanel>
 
@@ -34,7 +34,12 @@
 
 
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="checkboxImage" Property="Source" Value="C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\Images\CheckboxChecked.png"/>
+                                <Setter TargetName="checkboxImage" Property="Source" Value="pack://siteoforigin:,,,/Images/CheckboxChecked.png"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="checkboxImage" Property="Source" Value="pack://siteoforigin:,,,/Images/CheckboxUnchecked.png"/>
                                 <Setter Property="Foreground" Value="White"/>
                             </Trigger>
 
@@ -43,7 +48,7 @@
                                     <Condition Property="IsMouseOver" Value="True"/>
                                     <Condition Property="IsChecked" Value="False"/>
                                 </MultiTrigger.Conditions>
-                                <Setter TargetName="checkboxImage" Property="Source" Value="C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\Images\CheckboxOnHover.png"/>
+                                <Setter TargetName="checkboxImage" Property="Source" Value="pack://siteoforigin:,,,/Images/CheckboxOnHover.png"/>
                                 <Setter Property="Foreground" Value="White"/>
                             </MultiTrigger>
 
@@ -130,7 +135,7 @@
         </Style>
 
         <!--Style voor derde style -->
-        <ImageBrush x:Key="Home_icon" ImageSource="C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\Images\btnHomeClicked.png" Stretch="Uniform"/>
+        <ImageBrush x:Key="Home_icon" ImageSource="pack://siteoforigin:,,,/Images/btnHomeClicked.png" Stretch="Uniform"/>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -445,10 +450,10 @@
                         <Label x:Name="lblCustom" Content="Selectie" HorizontalAlignment="Left" Margin="40,106,0,-16" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Height="80" Width="170" />
                     </Grid>
                 </StackPanel>
-                <GroupBox x:Name="grpCategorySummary" Grid.ColumnSpan="6" Header="Geselecteerde categorieën" HorizontalAlignment="Left" Height="840" Grid.Row="1" VerticalAlignment="Top" Width="1227" FontFamily="/Krunsj V1;component/Fonts/#Sweet Creamy" FontSize="22" BorderBrush="#FF7D136B" Foreground="#FF7D136B" BorderThickness="4" Background="White" Grid.RowSpan="4"/>
+                <GroupBox x:Name="grpCategorySummary" Grid.ColumnSpan="6" Header="Geselecteerde categorieën" HorizontalAlignment="Left" Height="840" Grid.Row="1" VerticalAlignment="Top" Width="1227" FontFamily="/KrunsjV1;component/Fonts/#Sweet Creamy" FontSize="22" BorderBrush="#FF7D136B" Foreground="#FF7D136B" BorderThickness="4" Background="White" Grid.RowSpan="4"/>
                 <Button x:Name="btnHome" Grid.Row="4" Grid.Column="5" BorderThickness="0" Style="{DynamicResource HomeStyle}" Margin="90,120,32,20" Click="btnHome_Click" RenderTransformOrigin="0.287,0.312">
                     <Button.Background>
-                        <ImageBrush ImageSource="C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\Images\btnHome.png"/>
+                        <ImageBrush ImageSource="pack://siteoforigin:,,,/Images/btnHome.png"/>
                     </Button.Background>
                 </Button>
 

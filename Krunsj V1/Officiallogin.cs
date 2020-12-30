@@ -19,9 +19,10 @@ namespace Krunsj_V1
         public User user;
         private string username;
         private string password;
+        private Mainwindow main = new Mainwindow(true);
 
-        
-        
+
+
         #endregion
         public Officiallogin()
         {
@@ -43,6 +44,13 @@ namespace Krunsj_V1
             Register.ShowDialog();
                         
         }
+        private void GotoNextStep()
+        {
+            // pass the existing instance to the next form
+            wndWelcome wndWelcome = new wndWelcome(main);
+
+            // display form 2 ...
+        }
 
 
 
@@ -52,6 +60,7 @@ namespace Krunsj_V1
         {
             Login();
             user = new User(username, password);
+            GotoNextStep();
         }
         /*
         private void btnLogin_KeyDown(object sender, KeyEventArgs e)
@@ -87,7 +96,7 @@ namespace Krunsj_V1
 
         }
         //////////////////////////////
-        // btnsignup properties  //
+        // btnsignup properties     //
         //////////////////////////////
         private void lblclose_MouseLeave(object sender, EventArgs e)
         {
@@ -144,7 +153,7 @@ namespace Krunsj_V1
             if (table.Rows.Count > 0)
             {
                 Application.Exit();
-                Mainwindow main = new Mainwindow(true);
+                
                 main.Visibility = System.Windows.Visibility.Visible;
                 main.ShowDialog();
             }
