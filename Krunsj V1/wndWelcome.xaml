@@ -1,0 +1,329 @@
+﻿<dx:ThemedWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" x:Name="wndUserSettings"
+    x:Class="Krunsj_V1.wndWelcome"
+    Width="810"
+    Height="598"
+    Title="wndWelcome"
+    TitleAlignment="Center"
+    WindowKind="Tabbed"
+    WindowStyle="None" ResizeMode="NoResize" Background="{x:Null}" Loaded="wndUserSettings_Loaded_1" MouseMove="wndUserSettings_MouseMove" WindowStartupLocation="CenterScreen">
+    <dx:ThemedWindow.Resources>
+        <!--Style voor button-->
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="Padding" Value="7" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Foreground" Value="#000" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="MinHeight" Value="20" />
+            <Setter Property="MinWidth" Value="50" />
+
+            <Setter Property="FontFamily" Value="Century Gothic" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border
+                            x:Name="border"
+                            Background="#fff"
+                            BorderBrush="#FF95848D"
+                            BorderThickness="2"
+                            CornerRadius="10">
+
+                            <ContentPresenter
+                                x:Name="contentPresenter"
+                                Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Focusable="False"
+                                RecognizesAccessKey="True"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="FontWeight" Value="Bold" />
+
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--Custom font for textblock-->
+        <Style x:Key="CustomFontForTextBlock1" TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="Foreground" Value="WhiteSmoke" />
+            <Setter Property="FontFamily" Value="Fonts/WelcomeSummer.ttf #Welcome Summer" />
+        </Style>
+
+        <!--style voor textbox -->
+        <Style TargetType="{x:Type TextBox}" x:Key="Textbox1">
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="MinHeight" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="Foreground" Value="WhiteSmoke" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="FontFamily" Value="Fonts/WelcomeSummer.ttf #Welcome Summer" />
+            <Setter Property="Template">
+
+
+
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border"
+                                CornerRadius="30"
+                                BorderBrush="#FFB9B9B9"
+                                BorderThickness="2" >
+                            <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+
+                        </Border>
+
+
+
+                        <ControlTemplate.Triggers>
+
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--Second style voor textbox -->
+        <Style TargetType="{x:Type TextBox}" x:Key="TextboxStyle2">
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="#FF95848D"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="MinHeight" Value="20"/>
+
+            <Setter Property="FontFamily" Value="Century Gothic" />
+            <Setter Property="Template">
+
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border"
+                                CornerRadius="10"
+                                BorderBrush="#FF95848D"
+                                BorderThickness="2"
+                                Background="#fff"
+                                >
+                            <ScrollViewer 
+                                Margin="5"
+                                x:Name="PART_ContentHost"
+                                Focusable="false"
+                               
+                                
+                                />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+
+                                <Setter Property="Foreground" Value="White" />
+
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="FontFamily" Value="Century Gothic" />
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--first style voor textblock -->
+        <Style TargetType="{x:Type TextBlock}" x:Key="textboxstyle2">
+            <Setter Property="Padding" Value="10"></Setter>
+            <Setter Property="FontFamily" Value="Century Gothic" />
+
+        </Style>
+
+
+
+        <!-- Simple Radio Button -->
+        <Style TargetType="{x:Type RadioButton}" x:Key="rdostyle1">
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
+            <Setter Property="FocusVisualStyle" Value="{DynamicResource RadioButtonFocusVisual}"/>
+            <Setter Property="Background" Value="{DynamicResource NormalBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+
+                        <!-- BulletDecorator is used to provide baseline alignment between the checkmark and the Content -->
+                        <BulletDecorator Background="Transparent">
+                            <BulletDecorator.Bullet>
+                                <Grid Width="13" Height="13">
+                                    <Ellipse x:Name="Ellipse_Border" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1"/>
+                                    <Ellipse Margin="4" x:Name="CheckMark" Fill="{DynamicResource GlyphBrush}"/>
+                                </Grid>
+                            </BulletDecorator.Bullet>
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True"/>
+                        </BulletDecorator>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Fill" Value="{DynamicResource MouseOverBrush}" TargetName="Ellipse_Border"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Fill" Value="{DynamicResource PressedBrush}" TargetName="Ellipse_Border"/>
+                                <Setter Property="Stroke" Value="{DynamicResource GlyphBrush}" TargetName="Ellipse_Border"/>
+                            </Trigger>
+
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--Simple Radio button style 2-->
+
+
+    </dx:ThemedWindow.Resources>
+    <dx:ThemedWindow.BorderBrush>
+        <ImageBrush/>
+    </dx:ThemedWindow.BorderBrush>
+
+    <Grid HorizontalAlignment="Left" Width="810" Height="598" VerticalAlignment="Bottom">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="195*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="34*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="officialBackgroundWelcome.jpg" Stretch="UniformToFill" />
+        </Grid.Background>
+        <Image x:Name="imgHeader"
+            Height="330"
+            Margin="195,60,0,0"
+            VerticalAlignment="Top"
+            Source="pack://siteoforigin:,,,/Images/headerPage1.png" HorizontalAlignment="Left" Width="460" />
+
+        <Grid HorizontalAlignment="Left" Height="79" Margin="0,0,0,-11" VerticalAlignment="Top" Width="810" Grid.Row="2" >
+            <Viewbox Margin="317,26,455,24"/>
+            <dx:SimpleButton x:Name="btnContinue"
+            Width="130"
+            Height="43"
+            Margin="620,18,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Continue&#xA;"
+            FontSize="18"
+            Foreground="#FF95848D"
+            GlyphAlignment="Left"
+            Style="{StaticResource ResourceKey=ButtonStyle1}" RenderTransformOrigin="1.154,-3.442" Click="btnContinue_Click" />
+            <RadioButton x:Name="rdoFirstScreen" GroupName="TextAlignmentGroup" IsChecked="{Binding IsChecked}" Checked="rdoFirstScreen_Checked" Unchecked="rdoFirstScreen_Unchecked" Margin="48,18,722,24">
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Image x:Name="ImageName" Stretch="Fill"/>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="ImageName" Property="Source">
+                                    <Setter.Value>
+                                        <BitmapImage UriSource="pack://siteoforigin:,,,/Images/rdoChecked1.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="ImageName" Property="Source">
+                                    <Setter.Value>
+                                        <BitmapImage UriSource="pack://siteoforigin:,,,/Images/rdoUnchecked1.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </RadioButton.Template>
+            </RadioButton>
+            <RadioButton x:Name="rdoSecondScreen" GroupName="TextAlignmentGroup" IsChecked="{Binding IsChecked}" Checked="rdoSecondScreen_Checked" Unchecked="rdoSecondScreen_Unchecked" RenderTransformOrigin="-2.655,0.828" Margin="115,18,655,24">
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Image x:Name="ImageName" Stretch="Fill"/>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="ImageName" Property="Source">
+                                    <Setter.Value>
+                                        <BitmapImage UriSource="pack://siteoforigin:,,,/Images/rdoChecked1.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="ImageName" Property="Source">
+                                    <Setter.Value>
+                                        <BitmapImage UriSource="pack://siteoforigin:,,,/Images/rdoUnchecked1.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </RadioButton.Template>
+            </RadioButton>
+            <RadioButton x:Name="rdoThirdScreen" GroupName="TextAlignmentGroup" IsChecked="{Binding IsChecked}" Checked="rdoThirdScreen_Checked" Unchecked="rdoThirdScreen_Unchecked" Margin="180,18,590,24">
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Image x:Name="ImageName" Stretch="Fill"/>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="ImageName" Property="Source">
+                                    <Setter.Value>
+                                        <BitmapImage UriSource="pack://siteoforigin:,,,/Images/rdoChecked1.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="ImageName" Property="Source">
+                                    <Setter.Value>
+                                        <BitmapImage UriSource="pack://siteoforigin:,,,/Images/rdoUnchecked1.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </RadioButton.Template>
+            </RadioButton>
+        </Grid>
+        <Border BorderBrush="#95848D" CornerRadius="10" BorderThickness="3" HorizontalAlignment="Right" Height="135" Margin="0,0,58,0" VerticalAlignment="Bottom" Width="705" Background="White" Grid.Row="1">
+            <TextBlock
+            x:Name="txtBlockInformation"
+            FontSize="14"
+            Foreground="Black"
+            Padding="10,10,30,10"
+            RenderTransformOrigin="0.503,0.5"
+            UseLayoutRounding="True"
+            Style="{StaticResource ResourceKey=textboxstyle2}" Background="White" Margin="7" />
+        </Border>
+        <TextBox x:Name="txtUserPathInput" IsReadOnly="True" IsEnabled="False" Style="{StaticResource ResourceKey=TextboxStyle2}" HorizontalAlignment="Left" Height="43" TextWrapping="Wrap" Text="Selecteer map met alle spelletjes bv: documenten&#xD;&#xA;&#xD;&#xA;" VerticalAlignment="Top" Width="553" Margin="47,344,0,0"/>
+        <dx:SimpleButton x:Name="btnBrowse"
+                Width="130"
+                Height="43"
+                Margin="622,344,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Content="Browse"
+                FontSize="18"
+                Foreground="#FF95848D"
+                GlyphAlignment="Left"
+                Style="{StaticResource ResourceKey=ButtonStyle1}" RenderTransformOrigin="1.154,-3.442" Click="btnBrowse_Click" />
+        <Image x:Name="imgOrganisation" HorizontalAlignment="Left" Height="286" Margin="170,30,0,0" VerticalAlignment="Top" Width="450" Source="pack://siteoforigin:,,,/Images/WelcomeScreen.png" Stretch="Uniform"/>
+        <Image x:Name="imgExample" HorizontalAlignment="Left" Height="341" Margin="47,39,0,0" VerticalAlignment="Top" Width="705" Source="pack://siteoforigin:,,,/Images/example.png" Stretch="Uniform"/>
+    </Grid>
+
+
+
+
+
+
+
+</dx:ThemedWindow>

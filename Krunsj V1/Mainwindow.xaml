@@ -1,13 +1,14 @@
-﻿<Window x:Name="Krunsj" x:Class="Krunsj_V1.Mainwindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Krunsj_V1"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Name="Krunsj" x:Class="Krunsj_V1.Mainwindow"
         mc:Ignorable="d"
         Title="Mainwindow" Height="900" Width="1598" WindowStartupLocation="CenterScreen"  WindowStyle="None"
         AllowsTransparency="True"
-        ResizeMode="CanResizeWithGrip" Icon="favicon (1).ico" MouseDown="Krunsj_MouseDown" >
+        ResizeMode="CanResizeWithGrip" Icon="favicon (1).ico" MouseDown="Krunsj_MouseDown" MouseMove="Krunsj_UpdateGui_MouseMove" Loaded="Krunsj_Loaded" >
 
 
     <Window.Resources>
@@ -16,16 +17,16 @@
 
         <!--checkbox style-->
         <Style x:Key="favoriteCheckbox" TargetType="{x:Type CheckBox}">
-            <Setter Property="Margin" Value="10"></Setter>
-            <Setter Property="Padding" Value="50"></Setter>
-            <Setter Property="FontFamily" Value="Century Gothic"></Setter>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="50"/>
+            <Setter Property="FontFamily" Value="Century Gothic"/>
             <Setter Property="Template">
 
 
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type CheckBox}">
                         <StackPanel Orientation="Horizontal">
-                            <Image x:Name="checkboxImage" Source="C:\Users\Tobias Hungwe\Desktop\Projecten\Krunsj V1\Krunsj V1\Images\CheckboxUncheched.png" Width="32"/>
+                            <Image x:Name="checkboxImage" Source="pack://siteoforigin:,,,/Images/CheckboxUnchecked.png" Width="32"/>
                             <ContentPresenter/>
                         </StackPanel>
 
@@ -33,8 +34,13 @@
 
 
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="checkboxImage" Property="Source" Value="C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\Images\CheckboxChecked.png"/>
-                                <Setter Property="Foreground" Value="White"></Setter>
+                                <Setter TargetName="checkboxImage" Property="Source" Value="pack://siteoforigin:,,,/Images/CheckboxChecked.png"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="checkboxImage" Property="Source" Value="pack://siteoforigin:,,,/Images/CheckboxUnchecked.png"/>
+                                <Setter Property="Foreground" Value="White"/>
                             </Trigger>
 
                             <MultiTrigger>
@@ -42,8 +48,8 @@
                                     <Condition Property="IsMouseOver" Value="True"/>
                                     <Condition Property="IsChecked" Value="False"/>
                                 </MultiTrigger.Conditions>
-                                <Setter TargetName="checkboxImage" Property="Source" Value="C:\Users\Tobias Hungwe\Desktop\Projecten\KrunsjV1\Krunsj V1\Images\CheckboxOnHover.png"/>
-                                <Setter Property="Foreground" Value="White"></Setter>
+                                <Setter TargetName="checkboxImage" Property="Source" Value="pack://siteoforigin:,,,/Images/CheckboxOnHover.png"/>
+                                <Setter Property="Foreground" Value="White"/>
                             </MultiTrigger>
 
                         </ControlTemplate.Triggers>
@@ -55,7 +61,7 @@
 
 
         <!--Style voor button-->
-        <Style TargetType="Button" x:Key="Button1">
+        <Style TargetType="{x:Type Button}" x:Key="ButtonStyle1">
             <Setter Property="Padding" Value="7"/>
             <Setter Property="Margin" Value="5"/>
             <Setter Property="Foreground" Value="#000"/>
@@ -89,8 +95,105 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!--style voor een tweede style button-->
+        <Style TargetType="{x:Type Button}" x:Key="ButtonStyle2">
+            <Setter Property="Padding" Value="7"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="#000"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="MinHeight" Value="20"/>
+            <Setter Property="MinWidth" Value="50"/>
+
+            <Setter Property="FontFamily" Value="Century Gothic"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border"
+                            CornerRadius="10"
+                            BorderBrush="#EBFFF5"
+                            BorderThickness="2"
+                            Background="#7D136B"
+                            >
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="FontWeight" Value="Bold" />
+
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+        <!--Style voor derde style -->
+        <ImageBrush x:Key="Home_icon" ImageSource="pack://siteoforigin:,,,/Images/btnHomeClicked.png" Stretch="Uniform"/>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+
+        <Style x:Key="HomeStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Home_icon}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Home_icon}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <!--style voor textbox -->
-        <Style TargetType="TextBox" x:Key="Textbox1">
+        <Style TargetType="{x:Type TextBox}" x:Key="Textbox1">
             <Setter Property="Padding" Value="7"/>
             <Setter Property="Margin" Value="5"/>
             <Setter Property="Foreground" Value="Black"/>
@@ -130,8 +233,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <Style x:Key="ListBoxItemStyleTransparentSelect" TargetType="ListBoxItem">
+       
+        <Style x:Key="ListBoxItemStyleTransparentSelect" TargetType="{x:Type ListBoxItem}">
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="FontFamily" Value="Arial"/>
@@ -142,7 +245,7 @@
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="ListBoxItem">
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
                         <Grid Background="{TemplateBinding Background}">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
@@ -176,8 +279,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <Style TargetType="Label" x:Key="CustomFont">
+        <!--Style voor custom textboxen-->
+        <Style TargetType="{x:Type Label}" x:Key="CustomFont">
             <Setter Property="FontSize" Value="25"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="WhiteSmoke"/>
@@ -189,7 +292,7 @@
 
 
     </Window.Resources>
-    
+
     <!--Zoek bar en catogorien-->
     <Grid x:Name="GridBacklayer">
         <Grid.ColumnDefinitions>
@@ -197,119 +300,163 @@
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="247*"/>
         </Grid.ColumnDefinitions>
-        <DockPanel x:Name="Left_DockPanel" LastChildFill="False" Grid.IsSharedSizeScope="True" Background="#FF7E116B" MouseMove="Left_DockPanel_MouseMove">
-            <Grid x:Name="Grdinhoud" VerticalAlignment="Top" Width="362">
+        <DockPanel x:Name="Left_DockPanel" LastChildFill="False" Grid.IsSharedSizeScope="True" MouseMove="Left_DockPanel_MouseMove" Background="#FF7E116B" Height="900" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="365">
+            <Grid x:Name="Grdinhoud" VerticalAlignment="Top" Width="362" RenderTransformOrigin="0.594,0.528">
                 <Grid x:Name="GrdinGrid" Height="804" VerticalAlignment="Top" Margin="0,96,0,0">
-                    <CheckBox x:Name="chkAlleKoekjes" Content=" Alle koekjes" VerticalAlignment="Top" Margin="155,35,26,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Foreground="White" Checked="chkAlleKoekjes_Checked" Unchecked="chkAlleKoekjes_Unchecked" Click="chkAlleKoekjes_Click"/>
-                    <ListBox x:Name="lstCheckboxItems" ItemContainerStyle="{StaticResource ListBoxItemStyleTransparentSelect}"  Margin="0,134,0,-45" HorizontalAlignment="Right" Width="362" Background="{x:Null}" BorderBrush="{x:Null}" SelectionChanged="lstCheckboxItems_SelectionChanged" >
-                        <CheckBox x:Name="chkMateriaal" Content="Materiaal" FontSize="24"  Foreground="White" Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="0"  Checked="chkMateriaal_Checked" Unchecked="chkMateriaal_Unchecked" />
-                        <CheckBox x:Name="chkLeeftijd" Content="Leeftijd" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Width="130" Checked="chkLeeftijd_Checked" Unchecked="chkLeeftijd_Unchecked"/>
-                        <CheckBox x:Name="chkThema" Content="Thema" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkThema_Checked" Unchecked="chkThema_Unchecked" />
-                        <CheckBox x:Name="chkterein" Content="Terein" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Checked="chkterein_Checked" Unchecked="chkterein_Unchecked" />
-                        <CheckBox x:Name="chkDuur" Content="Duur" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkDuur_Checked" Unchecked="chkDuur_Unchecked"/>
-                        <CheckBox x:Name="chkSoortSpel" Content="Soort spel" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Checked="chkSoortSpel_Checked" Unchecked="chkSoortSpel_Unchecked" />
-                        <CheckBox x:Name="chkVakanties"  Content="Vakanties" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkVakanties_Checked" Unchecked="chkVakanties_Unchecked" />
+                    <CheckBox x:Name="chkAlleKoekjes" Content=" Alle koekjes" VerticalAlignment="Top" Margin="155,35,26,0" RenderTransformOrigin="0.5,0.5" FontSize="24" Style="{StaticResource favoriteCheckbox}" Foreground="White" Click="chkAlleKoekjes_Click" Cursor="Hand"/>
+                    <ListBox ItemContainerStyle="{StaticResource ListBoxItemStyleTransparentSelect}" x:Name="lstCheckboxItems"   Margin="0,134,0,-95" HorizontalAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}"  >
+                        <CheckBox Uid="0" x:Name="chkItem0" Content="Item_0" FontSize="24"  Foreground="White" Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="0"  Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Cursor="Hand" />
+                        <CheckBox Uid="1" x:Name="chkItem1" Content="Item_1" FontSize="24"     Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Width="130" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Cursor="Hand"/>
+                        <CheckBox Uid="2" x:Name="chkItem2" Content="Item_2" FontSize="24"           Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Cursor="Hand" />
+                        <CheckBox Uid="3" x:Name="chkItem3" Content="Item_3" FontSize="24"         Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Cursor="Hand" />
+                        <CheckBox Uid="4" x:Name="chkItem4" Content="Item_4" FontSize="24"             Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Cursor="Hand"/>
+                        <CheckBox Uid="5" x:Name="chkItem5" Content="Item_5" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Margin="180 45" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Cursor="Hand" />
+                        <CheckBox Uid="6" x:Name="chkItem6" Content="Item_6" FontSize="24"  Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Margin="0" Cursor="Hand" />
+                        <CheckBox Uid="7" x:Name="chkItem7"  Content="Item_7" FontSize="24"          Foreground="White"  Style="{StaticResource ResourceKey=favoriteCheckbox}" Checked="chkCategory_Checked" Unchecked="chkCategory_Unchecked" Margin="180 45"  Cursor="Hand" />
                     </ListBox>
 
                 </Grid>
 
-                <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Height="52" Margin="10,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Style="{StaticResource Textbox1}" CaretBrush="Black" OpacityMask="Black" TextChanged="txtSearch_TextChanged"/>
-                <Button x:Name="btnZoeken" Content="Zoeken" HorizontalAlignment="Left" Margin="256,44,0,0" VerticalAlignment="Top" Width="96" Style="{StaticResource ResourceKey=Button1}" IsCancel="True" Height="52"/>
+                <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Height="52" Margin="10,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Style="{StaticResource Textbox1}" CaretBrush="Black" OpacityMask="Black"/>
+                <Button x:Name="btnZoeken" Content="Zoeken" HorizontalAlignment="Left" Margin="256,44,0,0" VerticalAlignment="Top" Width="96" Style="{StaticResource ResourceKey=ButtonStyle1}" IsCancel="True" Height="52"/>
             </Grid>
         </DockPanel>
+
         <!--keuze menu op basis van geselecteerd-->
         <DockPanel x:Name="RightDockpanel" HorizontalAlignment="Left" LastChildFill="False" Margin="364,0,0,0" Grid.Column="2" Width="0"/>
         <DockPanel x:Name="DckCentrum" Grid.Column="2" HorizontalAlignment="Center" Height="900" LastChildFill="False" VerticalAlignment="Top">
-            <Grid x:Name="GrdCentrum" Height="845" VerticalAlignment="Top" DockPanel.Dock="Bottom" Loaded="GrdCentrum_Loaded">
+            <Grid x:Name="GrdCentrum" Height="900" VerticalAlignment="Top" DockPanel.Dock="Bottom" Loaded="GrdCentrum_Loaded" Width="1237" >
                 <Grid.Background>
                     <ImageBrush/>
                 </Grid.Background>
-                <Canvas x:Name="myCanvas" Height="60" Margin="0,-65,0,0" VerticalAlignment="Top" Width="1233" HorizontalAlignment="Right" SizeChanged="Mycanvas_SizeChanged" Grid.IsSharedSizeScope="True">
-                    <Border x:Name="BdrMinimize" BorderThickness="1" HorizontalAlignment="Left" Height="60" VerticalAlignment="Bottom" Width="60" MouseEnter="BdrMinimize_MouseEnter" MouseLeave="BdrMinimize_MouseLeave" MouseLeftButtonDown="BdrMinimize_MouseLeftButtonDown" Canvas.Left="1103">
-                        <Label x:Name="lblMinimize" Content="-" Cursor="Hand" FontSize="72" Margin="9,-36,-5,0" RenderTransformOrigin="0.875,-0.4" HorizontalAlignment="Left" Width="54" Height="70" VerticalAlignment="Top"/>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="12*" />
+                    <RowDefinition Height="42*" />
+                    <RowDefinition Height="42*"/>
+                    <RowDefinition Height="42*" />
+                    <RowDefinition Height="42*"/>
+
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="203*" />
+                    <ColumnDefinition Width="203*"/>
+                    <ColumnDefinition Width="203*" />
+                    <ColumnDefinition Width="203*" />
+                    <ColumnDefinition Width="200*"/>
+                    <ColumnDefinition Width="200*" />
+
+                </Grid.ColumnDefinitions>
+
+                <Canvas x:Name="cvsToolbar" Height="60" VerticalAlignment="Bottom" SizeChanged="cvsToolbar_SizeChanged" Grid.IsSharedSizeScope="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Left" Width="1237" >
+                    <Border x:Name="BdrMinimize" BorderThickness="1" HorizontalAlignment="Stretch" Height="67" VerticalAlignment="Bottom" Width="60" MouseEnter="BdrMinimize_MouseEnter" MouseLeave="BdrMinimize_MouseLeave" MouseLeftButtonDown="BdrMinimize_MouseLeftButtonDown" Canvas.Left="1103" Canvas.Top="-5">
+                        <Label x:Name="lblMinimize" Content="-" Cursor="Hand" FontSize="72" Margin="9,-24,14,0" RenderTransformOrigin="0.875,-0.4" HorizontalAlignment="Stretch" Height="80" VerticalAlignment="Top"  />
                     </Border>
-                    <Border x:Name="BdrExit" BorderThickness="1" Height="60" Canvas.Left="1168" Width="65" MouseEnter="BdrExit_MouseEnter_1" MouseLeave="BdrExit_MouseLeave_1" MouseLeftButtonDown="BdrExit_MouseLeftButtonDown">
-                        <Label x:Name="lblExit" Content="X" FontSize="36" RenderTransformOrigin="0.759,0.5" HorizontalContentAlignment="Center" FontFamily="Century Gothic" Cursor="Hand" MouseLeftButtonDown="lblExit_MouseLeftButtonDown_1" Height="58" VerticalAlignment="Bottom" Margin="-1,0,-1,-1" HorizontalAlignment="Left" Width="65"/>
+                    <Border x:Name="BdrExit" HorizontalAlignment="Stretch" BorderThickness="1" Height="67" Canvas.Left="1168" Width="67" MouseEnter="BdrExit_MouseEnter_1" MouseLeave="BdrExit_MouseLeave_1" MouseLeftButtonDown="BdrExit_MouseLeftButtonDown" Canvas.Top="-5">
+                        <Label x:Name="lblExit" Content="X" FontSize="36" RenderTransformOrigin="0.759,0.5" HorizontalContentAlignment="Center" FontFamily="Century Gothic" Cursor="Hand" MouseLeftButtonDown="lblExit_MouseLeftButtonDown_1" Margin="9" HorizontalAlignment="Stretch"/>
                     </Border>
                 </Canvas>
 
-                <StackPanel x:Name="stackMateriaal" x:Uid="" Margin="0,0,1013,610" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+                <StackPanel x:Uid="0" x:Name="stackMateriaal"  Width="170" Grid.Row="4" Grid.Column="3" Margin="0,0,27,20" Height="170" VerticalAlignment="Bottom" HorizontalAlignment="Right" MouseEnter="stackMateriaal_MouseEnter" MouseDown="Category_Clicked">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="Images/Fields.png"/>
                     </StackPanel.Background>
                     <Grid Height="170">
-                        <Label x:Name="lblMateriaal" Content="Materiaal" HorizontalAlignment="Left" Margin="18,95,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded"/>
+                        <Label x:Name="lblMateriaal" Content="Materiaal" HorizontalAlignment="Left" Margin="18,95,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}"/>
+                    </Grid>
+                </StackPanel>
+
+                <StackPanel x:Uid="1" x:Name="stackLeeftijd"  Width="170" Grid.Column="3" Margin="0,0,27,10" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom" Grid.Row="1" MouseDown="Category_Clicked" MouseEnter="stackLeeftijd_MouseEnter" >
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="Images/Fields.png"/>
+                    </StackPanel.Background>
+                    <Grid Height="170">
+                        <Label x:Name="lblLeeftijd" Content="Leeftijd" HorizontalAlignment="Left" Margin="30,95,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" />
+                    </Grid>
+                </StackPanel>
+
+                <StackPanel x:Uid="2" x:Name="stackThema" Width="170" Grid.Row="2" Grid.Column="4" Margin="0,0,10,20" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom" MouseDown="Category_Clicked" MouseEnter="stackThema_MouseEnter">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="Images/Fields.png"/>
+                    </StackPanel.Background>
+                    <Grid Height="170">
+                        <Label x:Name="lblThema" Content="Thema" HorizontalAlignment="Left" Margin="41,96,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" RenderTransformOrigin="0.479,0.773"/>
                     </Grid>
 
 
 
                 </StackPanel>
-                <StackPanel x:Name="stackLeeftijd"  Margin="0,0,698,610" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+                <StackPanel x:Uid="3" x:Name="stackTerein" Width="170" Grid.Row="3" Grid.Column="4" Margin="0,0,10,20" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom" MouseDown="Category_Clicked" MouseEnter="stackTerein_MouseEnter">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="Images/Fields.png"/>
                     </StackPanel.Background>
                     <Grid Height="170">
-                        <Label x:Name="lblLeeftijd" Content="Leeftijd" HorizontalAlignment="Left" Margin="30,95,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded"/>
+                        <Label x:Name="lblTerein" Content="Terein" HorizontalAlignment="Left" Margin="45,95,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" />
                     </Grid>
 
 
 
                 </StackPanel>
-                <StackPanel x:Name="stackThema" Margin="0,0,408,610" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+                <StackPanel x:Uid="4" x:Name="stackDuur" Width="170" Grid.Row="3" Grid.Column="1" Margin="0,0,10,10" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom" MouseDown="Category_Clicked" MouseEnter="stackDuur_MouseEnter">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="Images/Fields.png"/>
                     </StackPanel.Background>
                     <Grid Height="170">
-                        <Label x:Name="lblThema" Content="Thema" HorizontalAlignment="Left" Margin="41,96,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded" RenderTransformOrigin="0.479,0.773"/>
+                        <Label x:Name="lblDuur" Content="Duur" HorizontalAlignment="Left" Margin="48,85,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" FontFamily="/Krunsj V1;component/Fonts/#Sweet Creamy"/>
                     </Grid>
 
 
 
                 </StackPanel>
-                <StackPanel x:Name="stackTerein" Margin="0,0,83,610" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+                <StackPanel x:Uid="5" x:Name="stackSoortSpel" Width="170" Grid.Row="2" Margin="0,0,10,20" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom" Grid.Column="1" MouseDown="Category_Clicked" MouseEnter="stackSoortSpel_MouseEnter">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="Images/Fields.png"/>
                     </StackPanel.Background>
                     <Grid Height="170">
-                        <Label x:Name="lblTerein" Content="Terein" HorizontalAlignment="Left" Margin="45,95,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded"/>
+                        <Label x:Name="lblSoortSpel" Content="Soort Spel" HorizontalAlignment="Left" Margin="18,85,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" />
                     </Grid>
 
 
 
                 </StackPanel>
-                <StackPanel x:Name="stackDuur" Margin="0,0,1013,340" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+                <StackPanel x:Uid="6" x:Name="stackVakanties" Width="170" Grid.Row="4" Grid.Column="2" Margin="0,0,27,20" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom" MouseDown="Category_Clicked" MouseEnter="stackVakanties_MouseEnter">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="Images/Fields.png"/>
                     </StackPanel.Background>
                     <Grid Height="170">
-                        <Label x:Name="lblDuur" Content="Duur" HorizontalAlignment="Left" Margin="48,85,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded" FontFamily="/Krunsj V1;component/Fonts/#Sweet Creamy"/>
+                        <Label x:Name="lblVakanties" Content="Vakanties" HorizontalAlignment="Left" Margin="18,85,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" />
                     </Grid>
-
-
-
                 </StackPanel>
-                <StackPanel x:Name="stackSoortSpel" Margin="0,0,698,340" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+
+
+
+
+                <StackPanel x:Uid="7" x:Name="stackIntensiteit" Width="170" Grid.Row="1" Margin="0,0,27,10" HorizontalAlignment="Right" Height="170" VerticalAlignment="Bottom" Grid.Column="2" MouseDown="Category_Clicked" MouseEnter="stackIntensiteit_MouseEnter">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="Images/Fields.png"/>
                     </StackPanel.Background>
                     <Grid Height="170">
-                        <Label x:Name="lblSoortSpel" Content="Soort Spel" HorizontalAlignment="Left" Margin="18,85,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded"/>
+                        <Label x:Name="lblIntensiteit" Content="Intensiteit" HorizontalAlignment="Left" Margin="11,101,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" />
                     </Grid>
 
-
-
                 </StackPanel>
-                <StackPanel x:Name="stackVakanties" Margin="0,0,408,340" HorizontalAlignment="Right" Width="170" Height="170" VerticalAlignment="Bottom">
+
+                <StackPanel x:Uid="8" x:Name="stackCustom" Width="245" Grid.Row="2" Grid.Column="2" Margin="0,0,79,100" HorizontalAlignment="Right" Height="226" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Grid.RowSpan="2" MouseEnter="stackCustom_MouseEnter">
                     <StackPanel.Background>
-                        <ImageBrush ImageSource="Images/Fields.png"/>
+                        <ImageBrush ImageSource="Images\Selection.png" Stretch="Uniform"/>
                     </StackPanel.Background>
                     <Grid Height="170">
-                        <Label x:Name="lblVakanties" Content="Vakanties" HorizontalAlignment="Left" Margin="18,85,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Loaded="lblMateriaal_Loaded"/>
+                        <Label x:Name="lblCustom" Content="Selectie" HorizontalAlignment="Left" Margin="40,106,0,-16" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Style="{DynamicResource ResourceKey=CustomFont}" Background="{x:Null}" Height="80" Width="170" />
                     </Grid>
-
-
-
                 </StackPanel>
+                <GroupBox x:Name="grpCategorySummary" Grid.ColumnSpan="6" Header="Geselecteerde categorieën" HorizontalAlignment="Left" Height="840" Grid.Row="1" VerticalAlignment="Top" Width="1227" FontFamily="/KrunsjV1;component/Fonts/#Sweet Creamy" FontSize="22" BorderBrush="#FF7D136B" Foreground="#FF7D136B" BorderThickness="4" Background="White" Grid.RowSpan="4"/>
+                <Button x:Name="btnHome" Grid.Row="4" Grid.Column="5" BorderThickness="0" Style="{DynamicResource HomeStyle}" Margin="90,120,32,20" Click="btnHome_Click" RenderTransformOrigin="0.287,0.312">
+                    <Button.Background>
+                        <ImageBrush ImageSource="pack://siteoforigin:,,,/Images/btnHome.png"/>
+                    </Button.Background>
+                </Button>
+
             </Grid>
         </DockPanel>
 
